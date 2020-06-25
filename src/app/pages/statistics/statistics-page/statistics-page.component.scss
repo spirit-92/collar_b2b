@@ -1,0 +1,177 @@
+.statistic-user {
+  width: 1180px;
+  margin: 0 auto;
+
+  &__route {
+    display: flex;
+    list-style: none;
+    margin-top: 16px;
+
+    li {
+      a {
+        color: #CCCCCC;
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: none;
+      }
+
+      .active-link {
+        color: #3A80BA;
+      }
+    }
+
+    li:not(:first-child) {
+      margin-left: 10px;
+
+      &:before {
+        content: ">";
+        display: inline-block;
+        margin-right: 10px;
+        color: #CCCCCC;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.statistic-h1 {
+  font-weight: bold;
+  color: #1A1A1A;
+  font-size: 32px;
+  line-height: 39px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.table {
+  border-spacing: unset;
+
+  tr {
+    height: 48px;
+    color: #1A1A1A;
+    text-align: center;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+
+    &:nth-child(odd) {
+      background: #FBFBFB;
+    }
+
+    &:nth-child(even) {
+      background: #F1F1F1;
+    }
+
+    th {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      background: #3A80BA;
+      color: #FFFFFF;
+    }
+
+    th:not(:last-child) {
+      border-right: 1px solid white;
+    }
+
+    th:first-child {
+      border-radius: 10px 0 0 0;
+    }
+
+    th:last-child {
+      border-radius: 0 10px 0 0;
+    }
+
+    td {
+      padding: 0;
+    }
+
+    td:not(:last-child) {
+      border-right: 1px solid white;
+    }
+  }
+
+  &__id {
+    min-width: 64px;
+  }
+
+  &__name-first {
+    min-width: 149px;
+  }
+
+  &__name-last {
+    min-width: 132px;
+  }
+
+  &__email {
+    min-width: 238px;
+    text-align: left;
+    padding-left: 24px;
+  }
+
+  &__gender {
+    min-width: 111px;
+  }
+
+  &__adress {
+    min-width: 146px;
+  }
+
+  &__click {
+    min-width: 152px;
+  }
+
+  &__page {
+    min-width: 180px;
+  }
+
+}
+
+.pagination__container {
+  margin: 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.pagination__btn {
+  list-style: none;
+  button {
+    cursor: pointer;
+    border: 2px solid #F1F1F1;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1A1A1A;
+    padding: 14px 20px;
+    background: none;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+  .pagination__btn-active {
+    color: #FFFFFF;
+    background: #3A80BA;
+  }
+
+}
+.pagination__ul{
+  margin: 0 24px;
+}
+
+
+
+.prev {
+}
+
+.next {
+  transform: rotate(180deg);
+}
+
+.btn-show {
+  color: #3A80BA;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
