@@ -8,10 +8,10 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Content-Type,Accept");
   next();
 })
-app.use(express.static(path.join(__dirname, 'dist/my-project')));
+app.use(express.static(path.join(__dirname, 'dist/brainstorming')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/my-project/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/brainstorming/index.html'));
 });
 const port = process.env.PORT || '3000';
 app.set('port', port);
