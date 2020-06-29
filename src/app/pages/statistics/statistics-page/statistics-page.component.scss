@@ -47,12 +47,14 @@
   border-spacing: unset;
 
   tr {
+    transition: .8s all;
     height: 48px;
     color: #1A1A1A;
     text-align: center;
     font-weight: normal;
     font-size: 16px;
     line-height: 20px;
+    cursor: pointer;
 
     &:nth-child(odd) {
       background: #FBFBFB;
@@ -61,7 +63,10 @@
     &:nth-child(even) {
       background: #F1F1F1;
     }
-
+    &:hover{
+      background: #929191;
+      color: #FFFFFF;
+    }
     th {
       font-weight: 400;
       font-size: 16px;

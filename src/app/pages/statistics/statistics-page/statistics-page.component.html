@@ -11,8 +11,9 @@
       </a>
     </li>
   </ul>
-
-  <table *ngIf="userStatistic" class="table">
+  <div style="min-height: 800px">
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "pacman" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+  <table *ngIf="userStatistic" [@table]="userStatistic" class="table">
     <caption style="text-align: left"><h1 class="statistic-h1">Users statistics</h1></caption>
     <tr>
       <th class="table__id">Id</th>
@@ -24,7 +25,8 @@
       <th class="table__click">Total clicks</th>
       <th class="table__page">Total page views</th>
     </tr>
-    <tr *ngFor=" let userStatistic of userStatistic">
+
+    <tr routerLink="user/{{userStatistic.id}}" *ngFor=" let userStatistic of userStatistic">
       <td>{{userStatistic.id}}</td>
       <td>{{userStatistic.first_name}}</td>
       <td>{{userStatistic.last_name}}</td>
@@ -34,7 +36,9 @@
       <td>{{userStatistic.total_clicks}}</td>
       <td>{{userStatistic.page_views}}</td>
     </tr>
+
   </table>
+  </div>
   <div *ngIf="showPage" class="pagination__container">
     <button [disabled]="disablePrev" (click)="showPrev()" class="btn-show">
       <img class="next"

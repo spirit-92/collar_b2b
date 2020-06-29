@@ -11,7 +11,10 @@ export class UserStatisticService {
   private  http: HttpClient
   ) {}
 
-  getUserStatistic(page):Observable<any>{
-    return this.http.get(`http://localhost:1111/statisticUser?page=${page}`)
+  getUsersStatistic(page):Observable<any>{
+    return this.http.get(`https://spirit.pp.ua/statisticUsers?page=${page}`)
+  }
+  getUserStatistic(id):Observable<any>{
+    return this.http.get(`https://spirit.pp.ua/statisticUser?userId=${id}`)
   }
 }
