@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserStatisticService} from "../../../services/user-statistic.service";
 
 @Component({
   selector: 'app-statistics-layout',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticsLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private infoUser: UserStatisticService
+  ) { }
 
   ngOnInit(): void {
+   this.infoUser.getUserInfo().subscribe(res =>{
+     console.log(res)
+   })
   }
 
 }

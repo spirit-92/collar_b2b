@@ -17,4 +17,7 @@ export class UserStatisticService {
   getUserStatistic(id):Observable<any>{
     return this.http.get(`https://spirit.pp.ua/statisticUser?userId=${id}`)
   }
+  getUserInfo():Observable<any>{
+    return this.http.get(`http://localhost:1111/infoUser`)
+  }
 }
