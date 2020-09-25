@@ -1,0 +1,26 @@
+.login_h1 {
+  text-align: center;
+  padding-top: 10px;
+  color: #ffffff;
+}
+
+.form-register {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.container_login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.style_login{
+  transform: translateY(-50%);
+}
+input{
+  color: white;
+}

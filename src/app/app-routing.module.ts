@@ -1,28 +1,19 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
-import {MainPageComponent} from "./pages/main-page/main-page.component";
-import {NotFoundPageComponent} from "./pages/not-found-page/not-found-page.component";
+import {HomePageComponent} from "./home-page/home-page.component";
+import {ProductPageComponent} from "./product-page/product-page.component";
 
 
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
-      {
-        path: '', redirectTo: '/', pathMatch: 'full'
-      },
-      {
-        path: '', component: MainPageComponent
-      },
-      {
-        path: 'statistic', loadChildren: () => import('./modules/statistic.module').then(mod => mod.StatisticModule)
-      }
+      {path: '', redirectTo: '/', pathMatch: 'full'},
+      {path: '', component: HomePageComponent},
+      {path: 'product/:id', component: ProductPageComponent}
     ]
   },
-  {
-    path: '**', component: NotFoundPageComponent
-  }
-
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)}
 ];
 
 @NgModule({

@@ -9,12 +9,33 @@ body{
   margin: 0;
   padding: 0;
 }
-.btn{
-  border-radius: 8px;
-  cursor: pointer;
-  border: none;
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.container{
+  width: 1170px;
+  margin: 0 auto;
 }
-.btn-white{
-  background: #ffffff;
-  color: #3A80BA;
+.d-flex{
+  display: flex;
+}
+.flex-space-between{
+  justify-content: space-between;
+}
+.flex-justify-center{
+  justify-content: center;
+}
+.flex-alight-center{
+  align-items: center;
+}
+.cursorPointer{
+  cursor: pointer;
+}
+.logo-style{
+  width: 100px;
+  height: 25px;
+}
+.display-contents{
+  display: contents;
 }

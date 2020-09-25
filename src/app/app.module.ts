@@ -1,26 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import { NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { ProductPageComponent } from './product-page/product-page.component';
+import { ProductComponent } from './shared/components/product/product.component';
+import {MatButtonModule} from '@angular/material/button';
+// import {ReactiveFormsModule} from "@angular/forms";
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import {SharedModule} from "./shared/shared.module";
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    MainPageComponent,
-    NotFoundPageComponent,
+    HomePageComponent,
+    ProductPageComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatListModule,
+    MatCardModule,
+    SharedModule
+    // ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

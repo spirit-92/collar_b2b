@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="admin__style-container d-flex flex-space-between flex-alight-center">
+    <h1 class="logo_nyVladic display-contents">
+      <a class="display-contents" routerLink="/">
+        <img class="logo-style" src="assets/logo/logo.jpg" alt="">
+      </a>
+    </h1>
+    <mat-list class="admin_nav-list" role="list">
+      <mat-list-item class="cursorPointer" routerLinkActive="active" [routerLink]="['/admin','dashboard']" role="listitem">Главная</mat-list-item>
+      <mat-list-item class="cursorPointer" routerLinkActive="active"  [routerLink]="['/admin','create']" role="listitem">Создать</mat-list-item>
+      <mat-list-item class="cursorPointer" (click)="logout($event)" role="listitem"><a class="admin_logout" href="#" >Выйти</a></mat-list-item>
+    </mat-list>
+    </div>
+  </div>
+</nav>
+<div class="bg_admin_route">
+  <router-outlet></router-outlet>
+</div>

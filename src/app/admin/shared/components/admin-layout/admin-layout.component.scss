@@ -1,0 +1,24 @@
+.navbar{
+  background: #000000;
+  border-bottom:  2px solid #ffff;;
+}
+.admin_nav-list{
+  display: flex;
+  padding: 0;
+}
+.logo_nyVladic{
+  margin: 0;
+}
+.admin__style-container{
+  padding: 15px 0;
+}
+.admin_logout{
+  text-decoration: none;
+  color: #fff;
+}
+.active{
+  outline: -webkit-focus-ring-color auto 1px;
+}
+.bg_admin_route{
+  background: #212121;
+}
