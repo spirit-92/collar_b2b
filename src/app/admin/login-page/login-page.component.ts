@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators,ReactiveFormsModule} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroupDirective, NgForm, Validators, ReactiveFormsModule} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import {Router} from '@angular/router';
+import {NgxSpinnerService} from "ngx-spinner";
 import {User} from "../../shared/interfaces";
 import {AuthService} from "../shared/services/auth.service";
 
@@ -22,7 +22,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class LoginPageComponent implements OnInit {
   public errorEmail = [];
   public errorPassword = [];
-  public  errorName = [];
+  public errorName = [];
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -36,27 +36,43 @@ export class LoginPageComponent implements OnInit {
   constructor(
     public route: Router,
     private spinner: NgxSpinnerService,
-    private auth:AuthService
-  ) { }
+    private auth: AuthService
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
   password() {
-    console.log('work')
+
   }
 
   onSubmit() {
-    const user:User = {
-      email:this.emailFormControl.value,
-      password:this.passwordFormControl.value
+    this.spinner.show()
+    const user: User = {
+      email: this.emailFormControl.value,
+      password: this.passwordFormControl.value
     }
-    this.auth.login(user).subscribe(()=>{
-      this.route.navigate(['/admin','dashboard'])
-    })
+    if (this.emailFormControl.status === 'VALID' && this.passwordFormControl.status === 'VALID') {
+      this.auth.login(user).subscribe(() => {
+        this.spinner.hide()
+        this.route.navigate(['/admin', 'dashboard'])
+      }, error => {
+        if (error.error.body) {
+          this.errorPassword.push(error.error.body);
+        } else if (typeof error.error.errors.email[0] !== undefined) {
+          this.errorPassword.push(error.error.errors.email[0]);
+        }
+
+        this.spinner.hide()
+      })
+    } else {
+      this.spinner.hide()
+    }
+
   }
 
   email() {
-    console.log('email')
+
   }
 }

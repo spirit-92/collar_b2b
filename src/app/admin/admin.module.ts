@@ -3,18 +3,19 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AdminLayoutComponent} from './shared/components/admin-layout/admin-layout.component';
 import {LoginPageComponent} from './login-page/login-page.component';
-import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-import { CreateProductComponent } from './create-product/create-product.component';
-import { EditProductPageComponent } from './edit-product-page/edit-product-page.component';
+import {DashboardPageComponent} from './dashboard-page/dashboard-page.component';
+import {CreateProductComponent} from './create-product/create-product.component';
+import {EditProductPageComponent} from './edit-product-page/edit-product-page.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from "@angular/material/list";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
-import { NgxSpinnerModule } from "ngx-spinner";
-import {ReactiveFormsModule,FormsModule} from "@angular/forms";
+import {NgxSpinnerModule} from "ngx-spinner";
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {AuthService} from "./shared/services/auth.service";
 import {SharedModule} from "../shared/shared.module";
+import {AuthGuard} from "./shared/services/auth.guard";
 
 
 @NgModule({
@@ -41,9 +42,9 @@ import {SharedModule} from "../shared/shared.module";
         path: '', component: AdminLayoutComponent, children: [
           {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
           {path: 'login', component: LoginPageComponent},
-          {path: 'dashboard', component: DashboardPageComponent},
-          {path: 'create', component: CreateProductComponent},
-          {path: 'product/:id/edit', component: EditProductPageComponent},
+          {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
+          {path: 'create', component: CreateProductComponent, canActivate: [AuthGuard]},
+          {path: 'product/:id/edit', component: EditProductPageComponent, canActivate: [AuthGuard]},
         ]
       }
     ]),
@@ -51,7 +52,7 @@ import {SharedModule} from "../shared/shared.module";
 
   ],
   exports: [RouterModule],
-  providers:[AuthService]
+  providers: [AuthService, AuthGuard]
 
 })
 export class AdminModule {
