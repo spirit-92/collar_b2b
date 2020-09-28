@@ -16,6 +16,8 @@ import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {AuthService} from "./shared/services/auth.service";
 import {SharedModule} from "../shared/shared.module";
 import {AuthGuard} from "./shared/services/auth.guard";
+import {MatSelectModule} from "@angular/material/select";
+import {AdminService} from "./shared/services/admin.service";
 
 
 @NgModule({
@@ -48,11 +50,12 @@ import {AuthGuard} from "./shared/services/auth.guard";
         ]
       }
     ]),
+    MatSelectModule,
 
 
   ],
   exports: [RouterModule],
-  providers: [AuthService, AuthGuard]
+  providers: [AuthService, AuthGuard,AdminService]
 
 })
 export class AdminModule {

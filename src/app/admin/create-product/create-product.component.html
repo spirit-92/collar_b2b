@@ -1,1 +1,40 @@
-<p>create-product works!</p>
+<div class="product_add">
+  <div class="container-product">
+    <form class="example-form product-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h1 class="product_h1">Создание нового продукта</h1>
+      <mat-form-field class="example-full-width">
+        <mat-label>Заголовок</mat-label>
+        <input formControlName="title" type="text" matInput
+               placeholder="Заголовок товара">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Артикул</mat-label>
+        <input formControlName="sku" type="text" matInput
+               placeholder="Артикул товара">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Укажите магазин</mat-label>
+        <mat-select  formControlName="shops" required>
+          <mat-option *ngFor="let shop of shops" [value]="shop.id">
+            {{shop.shop}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <mat-form-field>
+
+        <mat-label class="example-full-width">Описание</mat-label>
+        <textarea formControlName="body"  type="text" matInput  placeholder="Описание товара"></textarea>
+      </mat-form-field>
+      <div class="form-group d-flex d-flex-column ">
+        <label for="img">Картинка продукта</label>
+        <input type="file" name="imageUrl" id="img" (change)="onFileChange($event)" #fileInput>
+        <button style="margin-top: 40px" type="button" (click)="clearFile()" mat-raised-button>Очистить</button>
+      </div>
+
+      <button style="margin-top: 40px" class="form-control form__register" type="submit"  mat-raised-button >Сохранить
+      </button>
+    </form>
+  </div>
+</div>

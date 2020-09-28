@@ -37,10 +37,12 @@ export class LoginPageComponent implements OnInit {
     public route: Router,
     private spinner: NgxSpinnerService,
     private auth: AuthService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('nyVladikTokenAdmin')){
+      this.route.navigate(['/admin', 'dashboard'])
+    }
   }
 
   password() {
