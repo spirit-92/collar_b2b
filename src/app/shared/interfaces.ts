@@ -4,9 +4,14 @@ export interface User {
 }
 
 export interface Shops {
-
     id: number,
     shop: string
-
-
+}
+export interface Product {
+  id:number,
+  body: string,
+  img: string,
+  shop: string,
+  sku: string,
+  title: string
 }

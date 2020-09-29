@@ -6,11 +6,17 @@
         <mat-label>Заголовок</mat-label>
         <input formControlName="title" type="text" matInput
                placeholder="Заголовок товара">
+        <div *ngIf="form.get('title').errors && form.get('title').touched" class="container-error">
+          <mat-error class="error" *ngIf="form.get('title').errors.minlength">минимальная длинна 6 символов</mat-error>
+        </div>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Артикул</mat-label>
         <input formControlName="sku" type="text" matInput
                placeholder="Артикул товара">
+        <div *ngIf="form.get('sku').errors && form.get('sku').touched" class="container-error">
+          <mat-error class="error" *ngIf="form.get('sku').errors.minlength">минимальная длинна 4 символов</mat-error>
+        </div>
       </mat-form-field>
 
       <mat-form-field>
@@ -26,10 +32,16 @@
 
         <mat-label class="example-full-width">Описание</mat-label>
         <textarea formControlName="body"  type="text" matInput  placeholder="Описание товара"></textarea>
+        <div *ngIf="form.get('body').errors && form.get('body').touched" class="container-error">
+          <mat-error class="error" *ngIf="form.get('body').errors.minlength">минимальная длинна 6 символов</mat-error>
+        </div>
       </mat-form-field>
       <div class="form-group d-flex d-flex-column ">
         <label for="img">Картинка продукта</label>
         <input type="file" name="imageUrl" id="img" (change)="onFileChange($event)" #fileInput>
+        <div *ngIf="errorImg" class="container-error">
+          <mat-error class="error">загрузите картинку товара</mat-error>
+        </div>
         <button style="margin-top: 40px" type="button" (click)="clearFile()" mat-raised-button>Очистить</button>
       </div>
 

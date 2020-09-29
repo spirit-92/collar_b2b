@@ -20,8 +20,18 @@ export class AdminService {
   saveProduct(product:any):Observable<any>{
     const header = new HttpHeaders({
       'token':localStorage.getItem('nyVladikTokenAdmin'),
-
     })
     return this.http.post<any>(`${environment.host}/nyVladikSaveProduct`,product,{headers:header})
+  }
+  getProducts():Observable<any>{
+    return this.http.get<any>(`${environment.host}/nyVladikGetProducts`)
+  }
+  deleteProduct(id):Observable<any>{
+    const header = new HttpHeaders({
+      'token':localStorage.getItem('nyVladikTokenAdmin'),
+    })
+    return this.http.post<any>(`${environment.host}/nyVladikDeleteProduct`,{
+      'id':id
+    },{headers:header})
   }
 }

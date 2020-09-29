@@ -15,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {SharedModule} from "./shared/shared.module";
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import {SharedModule} from "./shared/shared.module";
     MatButtonModule,
     MatListModule,
     MatCardModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot()
     // ReactiveFormsModule,
 
   ],

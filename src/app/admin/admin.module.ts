@@ -18,6 +18,7 @@ import {SharedModule} from "../shared/shared.module";
 import {AuthGuard} from "./shared/services/auth.guard";
 import {MatSelectModule} from "@angular/material/select";
 import {AdminService} from "./shared/services/admin.service";
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {AdminService} from "./shared/services/admin.service";
       }
     ]),
     MatSelectModule,
+    MatCardModule,
 
 
   ],
