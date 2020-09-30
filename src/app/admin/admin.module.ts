@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import {NgModule, Provider} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AdminLayoutComponent} from './shared/components/admin-layout/admin-layout.component';
@@ -19,15 +19,24 @@ import {AuthGuard} from "./shared/services/auth.guard";
 import {MatSelectModule} from "@angular/material/select";
 import {AdminService} from "./shared/services/admin.service";
 import {MatCardModule} from "@angular/material/card";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthInterceptor} from "./shared/auth.interceptor";
+import {SearchPipe} from "./shared/pipes/search.pipe";
 
 
+const INTERCEPTOR_PROVIDER:Provider = {
+  provide:HTTP_INTERCEPTORS,
+  multi:true,
+  useClass:AuthInterceptor
+}
 @NgModule({
   declarations: [
     AdminLayoutComponent,
     LoginPageComponent,
     DashboardPageComponent,
     CreateProductComponent,
-    EditProductPageComponent
+    EditProductPageComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
@@ -57,7 +66,7 @@ import {MatCardModule} from "@angular/material/card";
 
   ],
   exports: [RouterModule],
-  providers: [AuthService, AuthGuard,AdminService]
+  providers: [AuthService, AuthGuard,AdminService,INTERCEPTOR_PROVIDER]
 
 })
 export class AdminModule {

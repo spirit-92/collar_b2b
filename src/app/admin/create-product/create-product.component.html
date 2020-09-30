@@ -29,7 +29,6 @@
 
       </mat-form-field>
       <mat-form-field>
-
         <mat-label class="example-full-width">Описание</mat-label>
         <textarea formControlName="body"  type="text" matInput  placeholder="Описание товара"></textarea>
         <div *ngIf="form.get('body').errors && form.get('body').touched" class="container-error">

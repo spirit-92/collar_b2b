@@ -1,9 +1,17 @@
+<div class=" form-control search-input">
+<mat-form-field  class="example-full-width">
+  <mat-label>Поиск по артикулу</mat-label>
+  <input [(ngModel)] ="searchSku"  style="color: white" matInput
+         placeholder="найти продукт">
+</mat-form-field>
+</div>
 <div class="container grid-body">
   <mat-card style="display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    justify-content: space-between;padding-bottom: 50px;" *ngFor="let product of products">
+    justify-content: space-between;padding-bottom: 50px;"
+            *ngFor="let product of products | searchProduct:searchSku">
     <mat-card-header>
       <mat-card-title>{{product.title}}</mat-card-title>
       <mat-card-subtitle>артикул: {{product.sku}}</mat-card-subtitle>
@@ -16,7 +24,7 @@
     </mat-card-content>
     <mat-card-actions style="position: absolute;bottom: 25px">
       <button (click)="deleteProduct(product.id)" color="warn" mat-raised-button>удалить</button>
-      <button mat-raised-button>редактировать</button>
+      <button [routerLink]="['/admin','product',product.id,'edit']" mat-raised-button>редактировать</button>
     </mat-card-actions>
   </mat-card>
 </div>

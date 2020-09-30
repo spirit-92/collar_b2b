@@ -2,36 +2,38 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
-import {Shops} from "../../../shared/interfaces";
 
-@Injectable()
+
+@Injectable({providedIn: 'root'})
 export class AdminService {
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+  }
 
-  getShops():Observable<any>{
-    const header = new HttpHeaders({
-      'token':localStorage.getItem('nyVladikTokenAdmin'),
-      'Content-Type': 'application/json'
-    })
-    return this.http.get<any>(`${environment.host}/nyVladikGetShops`,{headers:header})
+  getShops(): Observable<any> {
+    return this.http.get<any>(`${environment.host}/nyVladikGetShops`)
   }
-  saveProduct(product:any):Observable<any>{
-    const header = new HttpHeaders({
-      'token':localStorage.getItem('nyVladikTokenAdmin'),
-    })
-    return this.http.post<any>(`${environment.host}/nyVladikSaveProduct`,product,{headers:header})
+
+  saveProduct(product: any): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladikSaveProduct`, product)
   }
-  getProducts():Observable<any>{
+
+  getProducts(): Observable<any> {
     return this.http.get<any>(`${environment.host}/nyVladikGetProducts`)
   }
-  deleteProduct(id):Observable<any>{
-    const header = new HttpHeaders({
-      'token':localStorage.getItem('nyVladikTokenAdmin'),
-    })
-    return this.http.post<any>(`${environment.host}/nyVladikDeleteProduct`,{
-      'id':id
-    },{headers:header})
+  getProductById(id):Observable<any>{
+    return this.http.post<any>(`${environment.host}/nyVladikGetProductById`, {
+      'id': id
+    },)
+  }
+
+  deleteProduct(id): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladikDeleteProduct`, {
+      'id': id
+    },)
+  }
+  editProduct(product):Observable<any>{
+    return this.http.post<any>(`${environment.host}/nyVladikEditProduct`, product,)
   }
 }

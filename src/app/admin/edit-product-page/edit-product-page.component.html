@@ -1,1 +1,45 @@
-<p>edit-product-page works!</p>
+<div  *ngIf="form" style="color: white;padding-top: 25px;">
+  <form class="edit-form-control" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Заголовок</mat-label>
+      <input formControlName="title" type="text" matInput
+             placeholder="Заголовок товара">
+      <div *ngIf="form.get('title').errors && form.get('title').touched" class="container-error">
+        <mat-error class="error" *ngIf="form.get('title').errors.minlength">минимальная длинна 6 символов</mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Артикул</mat-label>
+      <input  formControlName="sku" type="text" matInput
+             placeholder="Артикул товара">
+      <div *ngIf="form.get('sku').errors && form.get('sku').touched" class="container-error">
+        <mat-error class="error" *ngIf="form.get('sku').errors.minlength">минимальная длинна 4 символов</mat-error>
+      </div>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label class="example-full-width">Описание</mat-label>
+      <textarea formControlName="body" type="text" matInput placeholder="Описание товара"></textarea>
+      <div *ngIf="form.get('body').errors && form.get('body').touched" class="container-error">
+        <mat-error class="error" *ngIf="form.get('body').errors.minlength">минимальная длинна 6 символов</mat-error>
+      </div>
+    </mat-form-field>
+        <mat-form-field>
+          <mat-label>Укажите магазин</mat-label>
+          <mat-select  formControlName="shops" required>
+            <mat-option *ngFor="let shop of shops" [value]="shop['id']">
+              {{shop['shop']}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    <div class="form-group d-flex d-flex-column ">
+      <label for="img">Изменить картинку продукта</label>
+      <input type="file" name="imageUrl" id="img" (change)="onFileChange($event)" #fileInput>
+      <div *ngIf="errorImg" class="container-error">
+        <mat-error class="error">загрузите картинку товара</mat-error>
+      </div>
+    </div>
+    <button style="margin-top: 40px" class="form-control form__register" type="submit"  mat-raised-button >Сохранить
+    </button>
+  </form>
+</div>

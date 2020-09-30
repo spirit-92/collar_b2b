@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService} from "../shared/services/admin.service";
 import {Product} from "../../shared/interfaces";
 import {ToastrService} from "ngx-toastr";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-dashboard-page',
@@ -9,29 +10,37 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit {
-  products:Product[]
-
+  products: Product[] = [];
+  searchSku:string = '';
   constructor(
     private adminService: AdminService,
-    private toast:ToastrService
+    private toast: ToastrService,
+    private loader: NgxSpinnerService
   ) {
   }
 
   ngOnInit(): void {
+    this.loader.show()
     this.adminService.getProducts().subscribe(res => {
-      this.products = res.product
+      this.products = res.product;
+      this.loader.hide()
+    }, error => {
+      console.log(error)
+      this.loader.hide()
+    }, () => {
+      this.loader.hide()
     })
   }
 
   deleteProduct(id) {
 
-    this.adminService.deleteProduct(id).subscribe(res =>{
+    this.adminService.deleteProduct(id).subscribe(res => {
       this.toast.success('Удалено')
-      this.products= this.products.filter(item =>{
+      this.products = this.products.filter(item => {
         return item.id !== id
       })
 
-    },error => {
+    }, error => {
       console.log(error)
     })
   }

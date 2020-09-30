@@ -36,13 +36,6 @@ export class CreateProductComponent implements OnInit {
   }
 
   private createForm() {
-    // this.form = this.fb.group({
-    //   title: ['', Validators.required],
-    //   body: ['', Validators.required],
-    //   sku: ['', Validators.required],
-    //   shops: ['', Validators.required],
-    //   image: null
-    // })
     this.form = this.fb.group({
       title: new FormControl('', [
         Validators.required,
@@ -83,8 +76,6 @@ export class CreateProductComponent implements OnInit {
   }
 
   onSubmit() {
-
-
     if (this.form.status === 'VALID') {
       const formModel = this.prepareSave();
       formModel.append('title', this.form.value.title)
