@@ -22,6 +22,8 @@ import {MatCardModule} from "@angular/material/card";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/auth.interceptor";
 import {SearchPipe} from "./shared/pipes/search.pipe";
+import { AddImgProductPageComponent } from './add-img-product-page/add-img-product-page.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 const INTERCEPTOR_PROVIDER:Provider = {
@@ -36,7 +38,8 @@ const INTERCEPTOR_PROVIDER:Provider = {
     DashboardPageComponent,
     CreateProductComponent,
     EditProductPageComponent,
-    SearchPipe
+    SearchPipe,
+    AddImgProductPageComponent
   ],
   imports: [
     CommonModule,
@@ -57,11 +60,13 @@ const INTERCEPTOR_PROVIDER:Provider = {
           {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
           {path: 'create', component: CreateProductComponent, canActivate: [AuthGuard]},
           {path: 'product/:id/edit', component: EditProductPageComponent, canActivate: [AuthGuard]},
+          {path: 'product/:id/addImgProduct', component: AddImgProductPageComponent, canActivate: [AuthGuard]},
         ]
       }
     ]),
     MatSelectModule,
     MatCardModule,
+    MatProgressBarModule,
 
 
   ],

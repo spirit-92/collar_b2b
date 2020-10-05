@@ -17,6 +17,16 @@
         <mat-error class="error" *ngIf="form.get('sku').errors.minlength">минимальная длинна 4 символов</mat-error>
       </div>
     </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Цена</mat-label>
+      <input  formControlName="price" type="number" matInput
+              placeholder="Цена товара">
+      <div *ngIf="form.get('price').errors && form.get('price').touched" class="container-error">
+        <mat-error class="error" *ngIf="form.get('price').errors.min">минимальная цена 1 грн</mat-error>
+      </div>
+    </mat-form-field>
+
     <mat-form-field>
       <mat-label class="example-full-width">Описание</mat-label>
       <textarea formControlName="body" type="text" matInput placeholder="Описание товара"></textarea>
@@ -32,6 +42,14 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+    <mat-form-field>
+      <mat-label>Укажите категорию</mat-label>
+      <mat-select  formControlName="category" required>
+        <mat-option *ngFor="let categoryes of category" [value]="categoryes['id']">
+          {{categoryes['category']}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="form-group d-flex d-flex-column ">
       <label for="img">Изменить картинку продукта</label>
       <input type="file" name="imageUrl" id="img" (change)="onFileChange($event)" #fileInput>

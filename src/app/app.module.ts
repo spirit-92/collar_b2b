@@ -16,6 +16,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {SharedModule} from "./shared/shared.module";
 import { ToastrModule } from 'ngx-toastr';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatListModule,
     MatCardModule,
     SharedModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxSpinnerModule,
     // ReactiveFormsModule,
 
   ],

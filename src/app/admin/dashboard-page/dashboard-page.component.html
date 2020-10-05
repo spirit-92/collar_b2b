@@ -10,11 +10,13 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    justify-content: space-between;padding-bottom: 50px;"
+    justify-content: space-between;
+    padding-bottom: 50px;"
             *ngFor="let product of products | searchProduct:searchSku">
     <mat-card-header>
       <mat-card-title>{{product.title}}</mat-card-title>
       <mat-card-subtitle>артикул: {{product.sku}}</mat-card-subtitle>
+      <mat-card-subtitle>цена: {{product.price}} грн</mat-card-subtitle>
     </mat-card-header>
     <img style="max-height: 350px;width: 100%" mat-card-image src="http://{{product.img}}">
     <mat-card-content>
@@ -22,9 +24,10 @@
        {{product.body}}
       </p>
     </mat-card-content>
-    <mat-card-actions style="position: absolute;bottom: 25px">
+    <mat-card-actions class="btn__style">
       <button (click)="deleteProduct(product.id)" color="warn" mat-raised-button>удалить</button>
       <button [routerLink]="['/admin','product',product.id,'edit']" mat-raised-button>редактировать</button>
+      <button [routerLink]="['/admin','product',product.id,'addImgProduct']" mat-raised-button>добавить картинку</button>
     </mat-card-actions>
   </mat-card>
 </div>

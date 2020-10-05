@@ -13,5 +13,6 @@ export interface Product {
   img: string,
   shop: string,
   sku: string,
-  title: string
+  title: string,
+  price:number
 }

@@ -15,6 +15,10 @@ export class AdminService {
     return this.http.get<any>(`${environment.host}/nyVladikGetShops`)
   }
 
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`${environment.host}/nyVladikGetCategories`)
+  }
+
   saveProduct(product: any): Observable<any> {
     return this.http.post<any>(`${environment.host}/nyVladikSaveProduct`, product)
   }
@@ -22,7 +26,8 @@ export class AdminService {
   getProducts(): Observable<any> {
     return this.http.get<any>(`${environment.host}/nyVladikGetProducts`)
   }
-  getProductById(id):Observable<any>{
+
+  getProductById(id): Observable<any> {
     return this.http.post<any>(`${environment.host}/nyVladikGetProductById`, {
       'id': id
     },)
@@ -33,7 +38,19 @@ export class AdminService {
       'id': id
     },)
   }
-  editProduct(product):Observable<any>{
+
+  editProduct(product): Observable<any> {
     return this.http.post<any>(`${environment.host}/nyVladikEditProduct`, product,)
+  }
+  addImgByProduct(data):Observable<any>{
+    return this.http.post<any>(`${environment.host}/nyVladikAddImgProduct`,data,{
+      reportProgress:true,
+      observe:'events'
+    })
+  }
+  deleteBaseImg(id):Observable<any>{
+    return this.http.post<any>(`${environment.host}/nyVladikDeleteImgProduct`,{
+      id:id
+    })
   }
 }

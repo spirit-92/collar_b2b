@@ -14,6 +14,7 @@ export class CreateProductComponent implements OnInit {
   form: FormGroup
   loading: boolean = false;
   shops: Shops[];
+  categories: any[];
   file: any;
   fileFormat: string;
   errorImg = false
@@ -31,6 +32,10 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.getShops().subscribe((res: any) => {
       this.shops = res.shops;
+    })
+    this.adminService.getCategories().subscribe((res: any) => {
+      this.categories = res.category
+      console.log(this.categories)
 
     })
   }
@@ -49,7 +54,14 @@ export class CreateProductComponent implements OnInit {
         Validators.required,
         Validators.minLength(4)
       ]),
+      price: new FormControl('', [
+        Validators.required,
+        Validators.min(1)
+      ]),
       shops: new FormControl('', [
+        Validators.required
+      ]),
+      categories: new FormControl('', [
         Validators.required
       ]),
       image: new FormControl('', [
@@ -82,25 +94,27 @@ export class CreateProductComponent implements OnInit {
       formModel.append('body', this.form.value.body)
       formModel.append('sku', this.form.value.sku)
       formModel.append('shop_id', this.form.value.shops)
+      formModel.append('categories', this.form.value.categories)
+      formModel.append('price', this.form.value.price)
       formModel.set('image', this.file, this.form.value.sku + `.${this.fileFormat}`)
-
       this.spinner.show()
+
       this.adminService.saveProduct(formModel).subscribe(res => {
         this.toast.success('товар сохранен')
         this.form.reset()
         this.spinner.hide()
-      },error => {
+      }, error => {
 
-        if (error.error.errors.sku[0]){
+        if (error.error.errors.sku[0]) {
           this.toast.error('артикул уже занят')
         }
         this.spinner.hide()
-      },()=>{
+      }, () => {
         this.spinner.hide()
       })
       this.spinner.hide()
     }
-    if(this.form.value.image == ''||this.form.value.image == null){
+    if (this.form.value.image == '' || this.form.value.image == null) {
       this.toast.error('загрузите картинку')
       this.errorImg = true
     }

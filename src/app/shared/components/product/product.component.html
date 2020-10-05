@@ -1,19 +1,23 @@
 <div class="product_container">
-<mat-card>
+<mat-card style="display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+    padding-bottom: 50px;">
   <mat-card-header class="d-flex flex-justify-center">
-    <mat-card-title>Card-title</mat-card-title>
-    <mat-card-subtitle>Card-subtitle</mat-card-subtitle>
+    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-subtitle>артикул: {{product.sku}}</mat-card-subtitle>
+    <mat-card-subtitle>цена: {{product.price}} грн</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="assets/main/img00867.jpg" alt="product">
+  <img style="height: 35em; max-width: 100%" mat-card-image src="http://{{product.img}}" alt="product">
   <mat-card-content>
     <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
+      {{product.title}}
     </p>
   </mat-card-content>
   <mat-card-actions style="text-align: center">
-    <button color="warn" [routerLink]="['/product',12]" mat-raised-button >просмотреть</button>
+    <button color="warn" [routerLink]="['/product',product.id]" mat-raised-button >заказать</button>
   </mat-card-actions>
 </mat-card>
 </div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="base__style">
+  <h1>Добавить картинки к товару</h1>
+  </div>
+  <form (ngSubmit)="onSubmit()" class="audio-form" action="#">
+    <input name="music" hidden="hidden" (change)="getRealFile()" #realFile type="file" id="real-file" multiple />
+    <label (click)="chooseFile()" #customButton  id="custom-button" for="real-file">
+      выберите картинку
+      <mat-progress-bar *ngIf="showProgress" #bar style="height: 10px;" mode="determinate" value={{progress}}></mat-progress-bar>
+      <div #customText id="custom-text">сохранить картинку</div>
+    </label>
+    <button [ngClass]="{ disableBtn:showProgress}" [disabled]="showProgress ? 'disabled': null" class="btn-saveMusic" type="submit">сохранить картинку товара</button>
+  </form>
+  <div class="container grid-img">
+  <div class="d-flex d-flex-column" *ngFor="let urlImg of img">
+    <img style="max-width: 100%;height: auto" src="http://{{urlImg.url}}" alt="">
+    <button (click)="deleteImg(urlImg.id)"  color="warn" mat-raised-button>Delete</button>
+  </div>
+  </div>
+</div>

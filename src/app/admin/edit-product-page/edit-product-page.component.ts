@@ -13,7 +13,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class EditProductPageComponent implements OnInit {
   form: FormGroup
-  shops: []
+  shops: [];
+  category:[];
   errorImg: any;
   idProduct: number
   file: any;
@@ -38,6 +39,7 @@ export class EditProductPageComponent implements OnInit {
       })
     ).subscribe(product => {
       this.shops = product.product.shops;
+      this.category = product.product.category
       this.form = this.fb.group({
         title: new FormControl(product.product.title, [
           Validators.required,
@@ -52,6 +54,13 @@ export class EditProductPageComponent implements OnInit {
           Validators.minLength(4)
         ]),
         shops: new FormControl(product.product.shop_id, [
+          Validators.required
+        ]),
+        price: new FormControl(product.product.price, [
+          Validators.required,
+          Validators.min(1)
+        ]),
+        category: new FormControl(product.product.categories_id, [
           Validators.required
         ]),
         image: new FormControl(''),
@@ -85,17 +94,21 @@ export class EditProductPageComponent implements OnInit {
         formModel.set('image', this.file, this.form.controls.sku.value + `.${this.fileFormat}`)
         formModel.append('title', this.form.value.title)
         formModel.append('body', this.form.value.body)
+        formModel.append('price', this.form.value.price)
         formModel.append('sku', this.form.controls.sku.value)
         formModel.append('shop_id', this.form.value.shops)
+        formModel.append('categories', this.form.value.category)
 
       } else {
         formModel.append('title', this.form.value.title)
         formModel.append('body', this.form.value.body)
+        formModel.append('price', this.form.value.price)
         formModel.append('sku', this.form.controls.sku.value)
         formModel.append('shop_id', this.form.value.shops)
+        formModel.append('categories', this.form.value.category)
       }
       formModel.append('id', this.idProduct + '')
-      console.log(formModel.get('image'))
+      // console.log(formModel.get('image'),formModel.get('categories_id'),formModel.get('body'),formModel.get('title'))
       this.spinner.show()
       this.adminService.editProduct(formModel).subscribe(res => {
         console.log(res)
@@ -104,9 +117,9 @@ export class EditProductPageComponent implements OnInit {
         this.spinner.hide()
       }, error => {
 
-        if (error.error.errors.sku[0]) {
-          this.toast.error('артикул уже занят')
-        }
+        // if (error.error.errors.sku[0]) {
+        //   this.toast.error('артикул уже занят')
+        // }
         this.spinner.hide()
       }, () => {
         this.spinner.hide()
