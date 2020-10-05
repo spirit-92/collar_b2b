@@ -86,7 +86,7 @@ export class AddImgProductPageComponent implements OnInit {
         this.showProgress = false;
         this.ulTrek.remove()
         this.img = error.error.status.img
-        if (error.error.status.error === 'max length 5 img') {
+        if (error.error.status.error === 'max lengths 5 img') {
           this.toastr.error('максимальное количество загруженых картинок к товару 5')
         }if (error.error.status.error === 'img exists'){
           this.toastr.error('эта картинка уже загружена')
