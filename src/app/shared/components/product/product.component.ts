@@ -8,6 +8,7 @@ import {Product} from "../../interfaces";
 })
 export class ProductComponent implements OnInit {
 @Input() product:Product
+  visibleSlide:boolean = false
   constructor() { }
 
   ngOnInit(): void {

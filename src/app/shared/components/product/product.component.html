@@ -17,7 +17,13 @@
     </p>
   </mat-card-content>
   <mat-card-actions style="text-align: center">
-    <button color="warn" [routerLink]="['/product',product.id]" mat-raised-button >заказать</button>
+    <button color="warn" [routerLink]="['/product',product.id]" mat-raised-button >Заказать</button>
+    <button (click)="visibleSlide = !visibleSlide" [appModalSlide]="product.id" mat-raised-button >Показать</button>
   </mat-card-actions>
 </mat-card>
+  <div *ngIf="visibleSlide" (click)="visibleSlide = !visibleSlide" class="placeholder">
+  </div>
+  <div *ngIf="visibleSlide" class="container-slider">
+    <h1>Slider</h1>
+  </div>
 </div>

@@ -1,0 +1,21 @@
+.placeholder{
+  position: fixed;
+  width: 100%;
+  background: rgba(0,0,0,.5);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+
+}
+.container-slider{
+  position: fixed;
+  background: white;
+  padding: 15px 15px;
+  width: 800px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+}
