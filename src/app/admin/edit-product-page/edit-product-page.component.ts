@@ -14,7 +14,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 export class EditProductPageComponent implements OnInit {
   form: FormGroup
   shops: [];
-  category:[];
+  category: [];
+  sizes: [];
   errorImg: any;
   idProduct: number
   file: any;
@@ -38,8 +39,11 @@ export class EditProductPageComponent implements OnInit {
         return this.adminService.getProductById(params['id'])
       })
     ).subscribe(product => {
+      console.log(product.product)
       this.shops = product.product.shops;
-      this.category = product.product.category
+      this.category = product.product.category;
+      this.sizes = product.product.sizes
+
       this.form = this.fb.group({
         title: new FormControl(product.product.title, [
           Validators.required,
@@ -89,7 +93,7 @@ export class EditProductPageComponent implements OnInit {
 
     if (this.form.status === 'VALID') {
       let formModel = new FormData();
-        if (this.file !== undefined) {
+      if (this.file !== undefined) {
         formModel = this.prepareSave();
         formModel.set('image', this.file, this.form.controls.sku.value + `.${this.fileFormat}`)
         formModel.append('title', this.form.value.title)
@@ -98,7 +102,6 @@ export class EditProductPageComponent implements OnInit {
         formModel.append('sku', this.form.controls.sku.value)
         formModel.append('shop_id', this.form.value.shops)
         formModel.append('categories', this.form.value.category)
-
       } else {
         formModel.append('title', this.form.value.title)
         formModel.append('body', this.form.value.body)

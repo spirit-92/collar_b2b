@@ -15,6 +15,7 @@ export class CreateProductComponent implements OnInit {
   loading: boolean = false;
   shops: Shops[];
   categories: any[];
+  sizes:any[];
   file: any;
   fileFormat: string;
   errorImg = false
@@ -36,6 +37,9 @@ export class CreateProductComponent implements OnInit {
     this.adminService.getCategories().subscribe((res: any) => {
       this.categories = res.category
       console.log(this.categories)
+    })
+    this.adminService.getSizesProducts().subscribe((res:any)=>{
+      this.sizes = res.sizes
 
     })
   }
@@ -59,6 +63,9 @@ export class CreateProductComponent implements OnInit {
         Validators.min(1)
       ]),
       shops: new FormControl('', [
+        Validators.required
+      ]),
+      size: new FormControl('', [
         Validators.required
       ]),
       categories: new FormControl('', [
@@ -88,14 +95,16 @@ export class CreateProductComponent implements OnInit {
   }
 
   onSubmit() {
+    const formModel = this.prepareSave();
     if (this.form.status === 'VALID') {
-      const formModel = this.prepareSave();
+
       formModel.append('title', this.form.value.title)
       formModel.append('body', this.form.value.body)
       formModel.append('sku', this.form.value.sku)
       formModel.append('shop_id', this.form.value.shops)
       formModel.append('categories', this.form.value.categories)
       formModel.append('price', this.form.value.price)
+      formModel.append('size', this.form.value.size)
       formModel.set('image', this.file, this.form.value.sku + `.${this.fileFormat}`)
       this.spinner.show()
 

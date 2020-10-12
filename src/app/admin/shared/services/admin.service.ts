@@ -42,15 +42,77 @@ export class AdminService {
   editProduct(product): Observable<any> {
     return this.http.post<any>(`${environment.host}/nyVladikEditProduct`, product,)
   }
-  addImgByProduct(data):Observable<any>{
-    return this.http.post<any>(`${environment.host}/nyVladikAddImgProduct`,data,{
-      reportProgress:true,
-      observe:'events'
+
+  addImgByProduct(data): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladikAddImgProduct`, data, {
+      reportProgress: true,
+      observe: 'events'
     })
   }
-  deleteBaseImg(id):Observable<any>{
-    return this.http.post<any>(`${environment.host}/nyVladikDeleteImgProduct`,{
-      id:id
+
+  deleteBaseImg(id): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladikDeleteImgProduct`, {
+      id: id
+    })
+  }
+
+  getSizesProducts(): Observable<any> {
+    return this.http.get<any>(`${environment.host}/nyVladikGetSizesProducts`)
+  }
+
+  //options
+
+
+  //shop
+  updateShop(id_shop, shopValue): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/edit/shop`, {
+      id_shop, shopValue
+    })
+  }
+
+  deleteShop(id_shop): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/delete/shop`, {
+      id_shop
+    })
+  }
+
+  addShop(value): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/add/shop`, {
+      value
+    })
+  }
+  //category
+  addCategory(value_categories): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/add/categories`, {
+      value_categories
+    })
+  }
+  deleteCategory(id_categories): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/delete/categories`, {
+      id_categories
+    })
+  }
+  updateCategory(id_categories, value_categories): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/edit/categories`, {
+      id_categories, value_categories
+    })
+  }
+  //sizes
+  addSizes(value_size): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/add/sizes`, {
+      value_size
+    })
+  }
+
+  deleteSizes(id_size): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/delete/sizes`, {
+      id_size
+    })
+  }
+
+  updateSize(id_size, value_size): Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladik/update/sizes`, {
+      id_size, value_size
     })
   }
 }

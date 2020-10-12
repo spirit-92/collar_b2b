@@ -22,5 +22,11 @@ export class ProductService {
   getProductByCategory(id):Observable<any>{
     return this.http.get<any>(`${environment.host}/nyVladikGetProductByCategories?id=${id}`)
   }
+  getImagesProduct(id):Observable<any>{
+    return this.http.get<any>(`${environment.host}/nyVladikGetImagesProduct?id=${id}`)
+  }
+  getProductByIdOrder(id): Observable<any> {
+    return this.http.get<any>(`${environment.host}/nyVladikGetProductOrderById?id=${id}`)
+  }
 
 }

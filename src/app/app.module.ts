@@ -17,7 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {SharedModule} from "./shared/shared.module";
 import { ToastrModule } from 'ngx-toastr';
 import {NgxSpinnerModule} from "ngx-spinner";
-import {ModalSlideDirective} from "./shared/directives/modalSlide.directive";
+
 
 
 @NgModule({
@@ -27,7 +27,6 @@ import {ModalSlideDirective} from "./shared/directives/modalSlide.directive";
     HomePageComponent,
     ProductPageComponent,
     ProductComponent,
-    ModalSlideDirective
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+.style__options{
+  color: white;
+
+  h1{
+    text-align: center;
+    padding-top: 10px ;
+  }
+}
+.style_list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #aaaaaa;
+
+}
+.edit-form-control{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 15px auto 0 auto;
+}

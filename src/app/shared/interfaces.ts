@@ -14,5 +14,7 @@ export interface Product {
   shop: string,
   sku: string,
   title: string,
-  price:number
+  sizes:string [],
+  price:number,
+
 }

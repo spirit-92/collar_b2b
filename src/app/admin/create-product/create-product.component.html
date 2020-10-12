@@ -42,6 +42,15 @@
       </mat-form-field>
 
       <mat-form-field>
+        <mat-label>Укажите размер</mat-label>
+        <mat-select formControlName="size" required>
+          <mat-option *ngFor="let size of sizes" [value]="size.id">
+            {{size.dimensions}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
         <mat-label>Укажите категорию</mat-label>
         <mat-select formControlName="categories" required>
           <mat-option *ngFor="let categories of categories" [value]="categories.id">

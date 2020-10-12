@@ -25,6 +25,11 @@ import {SearchPipe} from "./shared/pipes/search.pipe";
 import { AddImgProductPageComponent } from './add-img-product-page/add-img-product-page.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 
+import { OptipnsAdminComponent } from './optipns-admin/optipns-admin.component';
+import {MatMenuModule} from "@angular/material/menu";
+import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
+import { EditSizesComponent } from './edit-sizes/edit-sizes.component';
+
 
 const INTERCEPTOR_PROVIDER:Provider = {
   provide:HTTP_INTERCEPTORS,
@@ -39,37 +44,48 @@ const INTERCEPTOR_PROVIDER:Provider = {
     CreateProductComponent,
     EditProductPageComponent,
     SearchPipe,
-    AddImgProductPageComponent
+    AddImgProductPageComponent,
+    OptipnsAdminComponent,
+    EditCategoriesComponent,
+    EditSizesComponent
   ],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatListModule,
-    NgxSpinnerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    RouterModule.forChild([
-      {
-        path: '', component: AdminLayoutComponent, children: [
-          {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
-          {path: 'login', component: LoginPageComponent},
-          {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
-          {path: 'create', component: CreateProductComponent, canActivate: [AuthGuard]},
-          {path: 'product/:id/edit', component: EditProductPageComponent, canActivate: [AuthGuard]},
-          {path: 'product/:id/addImgProduct', component: AddImgProductPageComponent, canActivate: [AuthGuard]},
-        ]
-      }
-    ]),
-    MatSelectModule,
-    MatCardModule,
-    MatProgressBarModule,
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatListModule,
+        NgxSpinnerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        RouterModule.forChild([
+            {
+                path: '', component: AdminLayoutComponent, children: [
+                    {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
+                    {path: 'login', component: LoginPageComponent},
+                    {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
+                    {path: 'create', component: CreateProductComponent, canActivate: [AuthGuard]},
+                    {path: 'edit/shop', component: OptipnsAdminComponent, canActivate: [AuthGuard]},
+                    {path: 'edit/categories', component: EditCategoriesComponent, canActivate: [AuthGuard]},
+                    {path: 'edit/sizes', component: EditSizesComponent, canActivate: [AuthGuard]},
+                    {path: 'product/:id/edit', component: EditProductPageComponent, canActivate: [AuthGuard]},
+                    {
+                        path: 'product/:id/addImgProduct',
+                        component: AddImgProductPageComponent,
+                        canActivate: [AuthGuard]
+                    },
+                ]
+            }
+        ]),
+        MatSelectModule,
+        MatCardModule,
+        MatProgressBarModule,
+        MatMenuModule,
 
 
-  ],
+    ],
   exports: [RouterModule],
   providers: [AuthService, AuthGuard,AdminService,INTERCEPTOR_PROVIDER]
 

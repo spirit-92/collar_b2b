@@ -9,6 +9,14 @@
     <mat-list *ngIf="auth.isAuthenticated()" class="admin_nav-list" role="list">
       <mat-list-item class="cursorPointer" routerLinkActive="active" [routerLink]="['/admin','dashboard']" role="listitem">Главная</mat-list-item>
       <mat-list-item class="cursorPointer" routerLinkActive="active"  [routerLink]="['/admin','create']" role="listitem">Создать</mat-list-item>
+      <mat-list-item [matMenuTriggerFor]="menu" class="cursorPointer" routerLinkActive="active"  role="listitem">
+        Опции
+        <mat-menu #menu="matMenu">
+          <button [routerLink]="['/admin/edit/shop']" mat-menu-item>Редактировать магазины</button>
+          <button [routerLink]="['/admin/edit/sizes']"  mat-menu-item>Редактировать размеры</button>
+          <button [routerLink]="['/admin/edit/categories']" mat-menu-item>Редактировать категории</button>
+        </mat-menu>
+      </mat-list-item>
       <mat-list-item class="cursorPointer" (click)="logout($event)" role="listitem"><a class="admin_logout" href="#" >Выйти</a></mat-list-item>
     </mat-list>
     </div>

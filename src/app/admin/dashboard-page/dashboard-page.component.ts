@@ -10,7 +10,7 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit {
-  products: Product[] = [];
+  products: Product[];
   searchSku:string = '';
   constructor(
     private adminService: AdminService,

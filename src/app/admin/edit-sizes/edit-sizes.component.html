@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="style__options">
+    <h1>Редактировать размеры</h1>
+    <div class="container-list">
+      <!--      //add shop-->
+      <form class="edit-form-control" [formGroup]="form" (ngSubmit)="submitAdd()">
+
+        <mat-form-field  class="example-full-width">
+          <mat-label>Добавить размер</mat-label>
+          <input formControlName="addSizes" aria-placeholder="test" type="text" matInput
+                 placeholder="Название размера">
+          <div *ngIf="form.get('addSizes').errors && form.get('addSizes').touched" class="container-error">
+            <mat-error class="error" *ngIf="form.get('addSizes').errors.required">поле не должно быть пустым</mat-error>
+          </div>
+        </mat-form-field>
+        <button style="margin-top: 40px" class="form-control form__register" type="submit" mat-raised-button>Добавить размер
+        </button>
+      </form>
+
+      <mat-selection-list  [multiple]="false">
+        <mat-list-option *ngFor="let size of sizes" [value]="size.dimensions" (click)="changValue(size.dimensions,size.id)">
+          <div  class="style_list">
+            {{size.dimensions}}
+            <button (click)="deleteSize(size.id)" color="warn" mat-raised-button>удалить</button>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    <form class="edit-form-control" [formGroup]="form" (ngSubmit)="submit()">
+
+      <mat-form-field  class="example-full-width">
+        <mat-label>Редактировать</mat-label>
+        <input formControlName="editSizes" [value]="inputValue.value" type="text" matInput
+               placeholder="Заголовок товара">
+
+      </mat-form-field>
+      <button style="margin-top: 40px" class="form-control form__register" type="submit" mat-raised-button>Сохранить
+      </button>
+    </form>
+
+  </div>
+</div>
+
+
+

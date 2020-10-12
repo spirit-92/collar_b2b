@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="style__options">
+    <h1>Редактировать магазин</h1>
+    <div style="border: solid 2px #ffffff;padding: 15px">
+<!--      //add shop-->
+      <form class="edit-form-control" [formGroup]="form" (ngSubmit)="submitAdd()">
+
+        <mat-form-field  class="example-full-width">
+          <mat-label>Добавить магазин</mat-label>
+          <input formControlName="addShop" aria-placeholder="test" type="text" matInput
+                 placeholder="Название магазина">
+          <div *ngIf="form.get('addShop').errors && form.get('addShop').touched" class="container-error">
+            <mat-error class="error" *ngIf="form.get('addShop').errors.required">поле не должно быть пустым</mat-error>
+          </div>
+        </mat-form-field>
+        <button style="margin-top: 40px" class="form-control form__register" type="submit" mat-raised-button>Добавить магазин
+        </button>
+      </form>
+
+    <mat-selection-list #shoes [multiple]="false">
+      <mat-list-option *ngFor="let shop of shops" [value]="shop.shop" (click)="changValue(shop.shop,shop.id)">
+        <div  class="style_list">
+        {{shop.shop}}
+        <button (click)="deleteShop(shop.id)" color="warn" mat-raised-button>удалить</button>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+    </div>
+    <form class="edit-form-control" [formGroup]="form" (ngSubmit)="submit()">
+
+      <mat-form-field  class="example-full-width">
+        <mat-label>Редактировать</mat-label>
+        <input formControlName="editShop" [value]="inputValue.value" type="text" matInput
+               placeholder="Заголовок товара">
+
+      </mat-form-field>
+      <button style="margin-top: 40px" class="form-control form__register" type="submit" mat-raised-button>Сохранить
+      </button>
+    </form>
+
+  </div>
+</div>
+
