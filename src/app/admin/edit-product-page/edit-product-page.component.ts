@@ -124,6 +124,7 @@ export class EditProductPageComponent implements OnInit {
         //   this.toast.error('артикул уже занят')
         // }
         this.spinner.hide()
+
       }, () => {
         this.spinner.hide()
       })
