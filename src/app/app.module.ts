@@ -18,7 +18,7 @@ import {SharedModule} from "./shared/shared.module";
 import { ToastrModule } from 'ngx-toastr';
 import {NgxSpinnerModule} from "ngx-spinner";
 
-
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     SharedModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-
+    IvyCarouselModule
     // ReactiveFormsModule,
 
   ],

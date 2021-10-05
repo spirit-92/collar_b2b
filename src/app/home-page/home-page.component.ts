@@ -42,10 +42,12 @@ export class HomePageComponent implements OnInit {
     this.loader.show()
     this.productService.getProductByCategory(id).subscribe(res => {
       if (res.product) {
+        console.log(res.product)
         this.products = res.product
         this.loader.hide()
       } else {
         this.toaster.error('товаров в этой категории не найдено')
+        this.products = null
         this.loader.hide()
       }
     }, error => {
@@ -57,9 +59,11 @@ export class HomePageComponent implements OnInit {
   AllProduct() {
     this.loader.show()
     this.productService.getProducts().subscribe(res => {
+      console.log(res)
       this.products = res.product
       this.loader.hide()
     }, error => {
+      console.log(error)
       this.toaster.error('ошибка сервера')
       this.loader.hide()
     })

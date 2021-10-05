@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div class="d-flex bg-main">
 <nav class="navbar main">
   <mat-list  class="mat-nav-list">
     <mat-list-item  (click)="AllProduct()"><a href="javascript:void(0);">Все продукты</a>  </mat-list-item>
@@ -9,4 +9,5 @@
   <app-product *ngFor="let product of products"
   [product]="product"></app-product>
 </div>
+
 </div>

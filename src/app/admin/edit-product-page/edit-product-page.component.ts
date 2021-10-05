@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {AdminService} from "../shared/services/admin.service";
 import {switchMap} from "rxjs/operators";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -12,12 +12,13 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./edit-product-page.component.scss']
 })
 export class EditProductPageComponent implements OnInit {
-  form: FormGroup
+  form: FormGroup;
   shops: [];
   category: [];
   sizes: [];
+  sizesProduct: any[];
   errorImg: any;
-  idProduct: number
+  idProduct: number;
   file: any;
   loading: boolean = false;
   fileFormat: string;
@@ -33,13 +34,14 @@ export class EditProductPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.route.params.pipe(
       switchMap(params => {
         this.idProduct = params['id']
         return this.adminService.getProductById(params['id'])
       })
     ).subscribe(product => {
-      console.log(product.product)
+      // console.log(product.product)
       this.shops = product.product.shops;
       this.category = product.product.category;
       this.sizes = product.product.sizes
@@ -49,6 +51,7 @@ export class EditProductPageComponent implements OnInit {
           Validators.required,
           Validators.minLength(6)
         ]),
+        size: new FormControl(' ', []),
         body: new FormControl(product.product.body, [
           Validators.required,
           Validators.minLength(6)
@@ -67,9 +70,11 @@ export class EditProductPageComponent implements OnInit {
         category: new FormControl(product.product.categories_id, [
           Validators.required
         ]),
+
         image: new FormControl(''),
       })
     })
+    this.getSizeProduct()
   }
 
   onFileChange(event) {
@@ -80,6 +85,13 @@ export class EditProductPageComponent implements OnInit {
       this.form.get('image').setValue(file)
       this.errorImg = false
     }
+  }
+
+  private getSizeProduct() {
+    this.adminService.getSizeProduct(this.idProduct).subscribe(res => {
+      this.sizesProduct = res
+      console.log(this.sizesProduct)
+    })
   }
 
   private prepareSave(): any {
@@ -133,4 +145,28 @@ export class EditProductPageComponent implements OnInit {
     this.loading = true;
   }
 
+  submitAddSize() {
+    if (this.form.value.size.id !== undefined) {
+      this.adminService.saveSize(this.idProduct + '', this.form.value.size.id).subscribe(res => {
+        this.toast.success('был добавлен размер')
+        this.getSizeProduct()
+      }, error => {
+        if (error.error.status == 'уже записан в базу' && error.error.status !== undefined) {
+          this.toast.error(error.error.status)
+        }
+      })
+
+    }
+    // console.log(this.form.value.size.id)
+  }
+
+  deleteSizes(id: any) {
+    this.adminService.deleteSizeProduct(id).subscribe(res => {
+      this.toast.success('удален')
+      this.sizesProduct = this.sizesProduct.filter(size => {
+        return size.id !== id
+      })
+    })
+    console.log(id)
+  }
 }

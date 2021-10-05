@@ -17,3 +17,8 @@
   height: 80px;
   align-items: center;
 }
+.li-sizes:not(:last-child){
+  &:after{
+    content: ', ';
+  }
+}

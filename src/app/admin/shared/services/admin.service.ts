@@ -115,4 +115,19 @@ export class AdminService {
       id_size, value_size
     })
   }
+  saveSize(idProduct,idSize):Observable<any>{
+    return this.http.post<any>(`${environment.host}/nyVladikSaveSize`, {
+      idProduct, idSize
+    })
+  }
+  getSizeProduct(id_product):Observable<any>{
+    return this.http.post<any>(`${environment.host}/nyVladikGetSizeProduct`, {
+      id_product
+    })
+  }
+  deleteSizeProduct(id):Observable<any> {
+    return this.http.post<any>(`${environment.host}/nyVladikDeleteSizeProduct`, {
+      id
+    })
+  }
 }

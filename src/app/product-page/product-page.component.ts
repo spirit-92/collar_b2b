@@ -21,7 +21,6 @@ export class ProductPageComponent implements OnInit {
     this.route.params.subscribe(res => {
       this.serviceProduct.getProductByIdOrder(res.id).subscribe(res => {
         this.product = res.product
-        console.log(this.product.img)
       },error => {
         console.log(error)
       })
