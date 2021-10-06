@@ -14,6 +14,7 @@ export class ProductService {
   ) { }
 
   getProducts(): Observable<any> {
+
     return this.http.get<any>(`${environment.host}/nyVladikGetProducts`)
   }
   getCategories():Observable<any>{
