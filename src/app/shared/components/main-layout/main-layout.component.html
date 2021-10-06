@@ -1,2 +1,16 @@
+<header>
+  <div class="container">
+    <div class="header-main">
+      <h1 class="header__h1">WAUDOG</h1>
+      <ul class="header__ul">
+        <li><a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/']" href="javascript:void(0);">Main</a></li>
+        <li><a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"  [routerLink]="['/catalog']"  href="javascript:void(0);">Catalog</a></li>
+<!--        <li><a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/catalog" href="javascript:void(0);">link</a></li>-->
+<!--        <li><a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"  routerLink="/" href="javascript:void(0);">Action</a></li>-->
+      </ul>
+    </div>
+
+  </div>
+</header>
 <router-outlet></router-outlet>
 <ngx-spinner></ngx-spinner>

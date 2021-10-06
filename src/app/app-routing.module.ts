@@ -3,6 +3,7 @@ import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {ProductPageComponent} from "./product-page/product-page.component";
+import {CatalogDegComponent} from "./catalog-deg/catalog-deg.component";
 
 
 const routes: Routes = [
@@ -10,10 +11,13 @@ const routes: Routes = [
     path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
-      {path: 'product/:id', component: ProductPageComponent}
+      {path: 'catalog', component: CatalogDegComponent},
+      {path: 'product/:id', component: ProductPageComponent},
+
     ]
   },
-  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)}
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)},
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({

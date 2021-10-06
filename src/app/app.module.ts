@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {NgxSpinnerModule} from "ngx-spinner";
 
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { CatalogDegComponent } from './catalog-deg/catalog-deg.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     HomePageComponent,
     ProductPageComponent,
     ProductComponent,
+    CatalogDegComponent,
   ],
   imports: [
     BrowserModule,
