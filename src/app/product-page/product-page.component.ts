@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit {
-  product: Product
+  product: any
 
   constructor(
     private serviceProduct: ProductService,
@@ -20,6 +20,7 @@ export class ProductPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(res => {
       this.serviceProduct.getProductByIdOrder(res.id).subscribe(res => {
+        console.log(res,'!!')
         this.product = res.product
       },error => {
         console.log(error)

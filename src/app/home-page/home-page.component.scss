@@ -6,7 +6,8 @@
 }
 
 .navbar{
-  background: #333333;
+  background: #58a9fd;
+  border-bottom: 1px solid gainsboro;
   min-width: 210px;
   padding: 0 15px;
 }
@@ -19,4 +20,17 @@
   background-position-x: right;
   background-position-y: top;
   background-size: contain;
+  flex-direction: column;
+}
+.mat-nav-list{
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+.mat-nav-list .list-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }

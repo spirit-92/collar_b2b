@@ -10,7 +10,7 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  products: Product[]
+  products: any[]
   categories: any[]
 
   constructor(
@@ -31,7 +31,9 @@ export class HomePageComponent implements OnInit {
     })
     this.loader.show()
     this.productService.getCategories().subscribe(res => {
-      this.categories = res.category;
+      console.log(res , '!!!')
+      this.categories = res;
+      console.log(this.categories)
     }, error => {
       this.toaster.error('ошибка сервера')
       this.loader.hide()
@@ -41,9 +43,10 @@ export class HomePageComponent implements OnInit {
   getFilter(id: number) {
     this.loader.show()
     this.productService.getProductByCategory(id).subscribe(res => {
-      if (res.product) {
-        console.log(res.product)
-        this.products = res.product
+      console.log(res,'!')
+      if (res) {
+        console.log(res)
+        this.products = res
         this.loader.hide()
       } else {
         this.toaster.error('товаров в этой категории не найдено')

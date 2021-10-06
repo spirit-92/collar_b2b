@@ -1,7 +1,7 @@
 <div class="product_container">
   <mat-card class="card-style">
     <mat-card-header class="d-flex flex-justify-center">
-      <mat-card-title>{{product.title}}</mat-card-title>
+      <mat-card-title [innerHTML]="description"></mat-card-title>
       <mat-card-subtitle>артикул: {{product.sku}}</mat-card-subtitle>
       <mat-card-subtitle>цена: {{product.price}} грн</mat-card-subtitle>
     </mat-card-header>
@@ -13,7 +13,7 @@
     </mat-card-content>
     <mat-card-actions style="text-align: center;position:absolute;bottom: 20px">
       <button color="warn" [routerLink]="['/product',product.id]" mat-raised-button>Заказать</button>
-      <button (click)="showAboutProduct(product.id)" mat-raised-button>Показать</button>
+      <button class="showMore" color="accent"  (click)="showAboutProduct(product.id)" mat-raised-button >Показать</button>
     </mat-card-actions>
   </mat-card>
   <div *ngIf="visibleSlide" (click)="visibleSlide = !visibleSlide" class="placeholder">

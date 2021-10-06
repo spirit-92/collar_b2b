@@ -11,9 +11,10 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  @Input() product: Product
+  @Input() product: any
   visibleSlide: boolean = false;
   productImg: any[];
+  description= ''
 
   constructor(
     public productService: ProductService,
@@ -23,6 +24,8 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.description  = this.product.description
+
   }
 
   showAboutProduct(id) {
