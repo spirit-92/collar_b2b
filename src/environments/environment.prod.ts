@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
 
-  host:'http://localhost:1111'
+  host:'/'
 
 };

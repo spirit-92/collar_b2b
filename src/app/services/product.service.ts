@@ -18,11 +18,10 @@ export class ProductService {
     return this.http.get<any>(`${environment.host}/nyVladikGetProducts`)
   }
   getCategories():Observable<any>{
-    return this.http.get<any>(`https://opencard.collar.com.ua/!b2b/index.php?route=api/category`)
+    return this.http.get<any>(`${environment.host}index.php?route=api/category`)
   }
-  getProductByCategory(id):Observable<any>{
-  console.log(id)
-  return this.http.get<any>(`https://opencard.collar.com.ua/!b2b/index.php?route=api/category&category_id=${id}`)
+  getCategories_des(id):Observable<any>{
+    return this.http.get<any>(`${environment.host}index.php?route=api/category&category_id=${id}`)
   }
   getImagesProduct(id):Observable<any>{
     return this.http.get<any>(`${environment.host}/nyVladikGetImagesProduct?id=${id}`)

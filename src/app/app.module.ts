@@ -20,6 +20,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
 
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CatalogDegComponent } from './catalog-deg/catalog-deg.component';
+import { DesignProductComponent } from './design-product/design-product.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CatalogDegComponent } from './catalog-deg/catalog-deg.component';
     ProductPageComponent,
     ProductComponent,
     CatalogDegComponent,
+    DesignProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.c
 import {HomePageComponent} from "./home-page/home-page.component";
 import {ProductPageComponent} from "./product-page/product-page.component";
 import {CatalogDegComponent} from "./catalog-deg/catalog-deg.component";
+import {DesignProductComponent} from "./design-product/design-product.component";
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
       {path: 'catalog', component: CatalogDegComponent},
+      {path: 'catalog/:id', component: DesignProductComponent},
       {path: 'product/:id', component: ProductPageComponent},
 
     ]

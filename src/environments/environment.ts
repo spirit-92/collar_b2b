@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  host:'http://localhost:1111'
+
+  host:'https://b2b.waudog.ua/'
+  // host:'https://opencard.collar.com.ua/!b2b/'
 };
 
 /*
