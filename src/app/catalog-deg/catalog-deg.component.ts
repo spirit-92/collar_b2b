@@ -19,7 +19,8 @@ export class CatalogDegComponent implements OnInit {
   ngOnInit(): void {
     this.loader.show()
     this.productService.getCategories().subscribe(res =>{
-      this.categories = res
+      console.log(res)
+      this.categories = res.category
       this.loader.hide()
     },error => {
       this.toaster.error(error.error.type)
