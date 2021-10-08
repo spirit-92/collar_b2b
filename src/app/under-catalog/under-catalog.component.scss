@@ -1,8 +1,6 @@
-
 .categories__h3{
   text-align: center;
   font-size: 30px;
-  margin-bottom: 0;
 }
 .card-categories{
   padding: 28px 15px;
@@ -14,21 +12,10 @@
   border-radius: 8px;
   box-shadow: 0 0 25px rgb(0 0 0 / 5%);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row-reverse;
   &:hover{
     transform: scale(1.1);
   }
 }
 .card__a{
   color: #212121;
-}
-.design__h1{
-  font-size: 45px;
-  text-align: center;
-  margin: 35px 0;
-  font-weight: 500;
-
 }

@@ -21,7 +21,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CatalogDegComponent } from './catalog-deg/catalog-deg.component';
 import { DesignProductComponent } from './design-product/design-product.component';
-
+import { UnderCatalogComponent } from './under-catalog/under-catalog.component';
+// import { SwiperModule } from 'swiper/angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { DesignProductComponent } from './design-product/design-product.componen
     ProductComponent,
     CatalogDegComponent,
     DesignProductComponent,
+    UnderCatalogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { DesignProductComponent } from './design-product/design-product.componen
     SharedModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    // SwiperModule
     // ReactiveFormsModule,
 
   ],

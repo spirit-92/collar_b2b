@@ -1,23 +1,45 @@
+<div class="container__product">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="slider__product">
+          <carousel
 
-<div *ngIf="product" style="margin-top: 50px;" class="container-order">
-<mat-card style="max-width: 600px;margin: 0 auto" class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{product.description}}</mat-card-title>
-    <mat-card-subtitle>артикул: {{product.sku}}</mat-card-subtitle>
-    <mat-card-subtitle>цена: {{product.price}}</mat-card-subtitle>
-  </mat-card-header>
-  <img intrinsicsize="480 x 640" style="width:100%"  applazyloadingimg mat-card-image src="http://{{product.img}}">
-  <mat-card-content>
-    <p>
-   {{product.body}}
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button routerLink="/" class="btn btn-link">На главную</button>
-    <button mat-raised-button>Заказать</button>
-  </mat-card-actions>
-</mat-card>
+                    [objectFit]="'cover'"
+                    [cellWidth]="'100%'"
+                    [height]="600"
 
+                    [borderRadius]="10"
+                    [arrowsOutside]="true"
+                    [autoplay]="false"
+                    [dots]="false"
+                    [loop]="true">
+            <div class="carousel-cell">
+              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
+            </div>
+            <div class="carousel-cell">
+              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
+            </div>
+            <div class="carousel-cell">
+              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
+            </div>
+            <div class="carousel-cell">
+              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
+            </div>
 
+          </carousel>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="product__description">
+          <div class="product__description-top">
+            <h1 class="product__h1">
+              КОЖАНЫЙ ОШЕЙНИК
+              <b>WAUDOG ETHNO</b>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

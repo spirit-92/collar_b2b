@@ -1,3 +1,26 @@
 <div class="design__product">
-  <h1>sdsd</h1>
+  <div style="margin-top: 100px;" class="container">
+    <h1 class="design__h1">Design</h1>
+    <div class="row">
+      <a   href="javascript:void(0);" *ngFor="let design of designs"
+           [routerLink]="['/catalog','design',design.id,'product',1]"
+           class="col-md-12 card__a">
+        <div class="card-categories">
+          <h2 class="categories__h3">{{design.name}}</h2>
+          <img  style="max-width: 100%;height: auto" src="{{design.image}}" alt="">
+        </div>
+      </a>
+      <!--    <div class="categories__item">-->
+      <!--      <ul class="categories__ul">-->
+      <!--        <li  *ngFor="let category of categories" >-->
+      <!--          <a href="javascript:void(0)">-->
+      <!--            <span>{{category.name}}</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--      </ul>-->
+      <!--    </div>-->
+    </div>
+
+  </div>
+
 </div>

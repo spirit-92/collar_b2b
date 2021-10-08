@@ -18,3 +18,8 @@ export interface Product {
   price:number,
 
 }
+export interface Design {
+  design?:any[],
+
+
+}

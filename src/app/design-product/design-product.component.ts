@@ -4,7 +4,10 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {ToastrService} from "ngx-toastr";
 import {switchMap} from "rxjs/operators";
 import {FormControl, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Design} from "../shared/interfaces";
+
+
 
 @Component({
   selector: 'app-design-product',
@@ -12,16 +15,19 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./design-product.component.scss']
 })
 export class DesignProductComponent implements OnInit {
-  categories__des: any[]
+  designs: Design
   id__categoriesDes: number;
   constructor(
     private productService: ProductService,
     private loader: NgxSpinnerService,
     private toaster: ToastrService,
     private route: ActivatedRoute,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
+    this.loader.show()
     this.route.params.pipe(
       switchMap((params):any => {
         this.id__categoriesDes = params['id']
@@ -30,6 +36,19 @@ export class DesignProductComponent implements OnInit {
       })
     ).subscribe(product => {
       console.log(product)
+      if (product.hasOwnProperty('design')){
+          // @ts-ignore
+        this.designs = product.design
+        }else {
+        // @ts-ignore
+        this.productService.underCategories(product.category)
+        // @ts-ignore
+        this.router.navigate(['/catalog/',product.name ,this.id__categoriesDes]);
+
+
+
+      }
+      this.loader.hide()
     })
   }
 

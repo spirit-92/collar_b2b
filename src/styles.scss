@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 @import '~ngx-toastr/toastr';
+
 body{
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
@@ -15,15 +16,18 @@ body{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.container{
-  width: 1170px;
-  margin: 0 auto;
-}
+//.container{
+//  width: 1170px;
+//  margin: 0 auto;
+//}
 .d-flex{
   display: flex;
 }
 .d-flex-column{
   flex-direction: column;
+}
+h1{
+  margin: 0;
 }
 .flex-space-between{
   justify-content: space-between;
