@@ -61,14 +61,12 @@
 }
 .color{
   .color__def{
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height:25px;
     border-radius: 50%;
-    background: red;
     cursor: pointer;
     display:flex;
-    align-items: center;
-    justify-content: center;
+
   }
   .black{
     background: black;
@@ -106,9 +104,9 @@
 }
 .color{
   display: flex;
-  width: 140px;
+  max-width: 60px;
   justify-content: space-between;
-  margin-top: 15px;
+
 }
 
 .product__description__design{
@@ -136,4 +134,10 @@
 }
 .size-first{
   border-left: 2px solid #4D4D4D;
+}
+td{
+  vertical-align: middle !important;
+}
+tr{
+  vertical-align: middle !important;
 }

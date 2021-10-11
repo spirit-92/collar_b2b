@@ -34,67 +34,67 @@
         <div class="product__description">
 <!-- название-->
           <div class="product__description-top">
-            <h1 class="product__h1">
-              КОЖАНЫЙ ОШЕЙНИК
-              <b>WAUDOG ETHNO</b>
+            <h1 *ngIf="productOption" class="product__h1">
+              {{productOption.item.category_name}}<br>
+              <b>{{productOption.item.item_name}}</b>
             </h1>
           </div>
 <!-- цена и sku-->
           <div class="product__description-price">
-            <div class="price"><h3> Sum : 0 $</h3></div>
-            <div class="description__availability">
-              <p class="availability">В НАЛИЧИИ</p>
-              <p class="sku">SKU#: 5557</p>
-            </div>
+            <div class="price"><h3> Sum : {{sum}} $</h3></div>
+<!--            <div class="description__availability">-->
+<!--              <p class="availability">В НАЛИЧИИ</p>-->
+<!--              <p class="sku">SKU#: 5557</p>-->
+<!--            </div>-->
           </div>
           <div class="product__description__hr"></div>
 <!-- цвет и принт-->
           <div class="product__description__design">
-            <div class="color_container">
-            <div class="description__color">
-              <h3 class="description__color_h3">Color: </h3>
-              <span class="description__color_span">{{black?'black':'white'}}</span>
-            </div>
-            <div  class="color">
-              <div (click)="changeColor('black')" class="color__def black">
-                <mat-icon class="icon__done" *ngIf="black" aria-hidden="false" aria-label="Example done icon">done</mat-icon>
-              </div>
-              <div (click)="changeColor('white')" class="color__def white">
-                <mat-icon class="icon__done" *ngIf="white" aria-hidden="false" aria-label="Example done icon">done</mat-icon>
-              </div>
 
-            </div>
-            </div>
             <div class="print__container">
               <div class="description__color">
-                <h3 class="description__color_h3">ПРИНТ: </h3>
-                <span class="description__color_span">ETHNO</span>
-              </div>
-              <div class="design__img">
-              <img src="assets/main/designCard.jpg" alt="">
+                <h3 class="description__color_h3">DESIGN: </h3>
+                <span class="description__color_span">{{productOption.item.design_name}}</span>
               </div>
             </div>
           </div>
 <!-- размер-->
           <div class="size-container">
 <!--            заголовок таблицы-->
-
-
             <table *ngIf="productOption" class="table">
               <thead>
               <tr>
                 <th scope="col">SIZE</th>
-                <th scope="col">COUNT</th>
-                <th scope="col">COLOR</th>
+                <th scope="col">
+                  <div class="color">
+                    <div  class="color__def black"></div>
+                  </div>
+                </th>
+                <th scope="col">
+                  <div class="color">
+                    <div  class="color__def white"></div>
+                  </div>
+                </th>
                 <th scope="col">PRICE</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let sizes of productOption.options.size">
                 <th scope="row">{{sizes.name}}</th>
-                <td><input style="max-width: 50px" min="0" type="number"></td>
-                <td> black white</td>
-                <td>0$</td>
+                <td>
+                  <input class="priceClass" [attr.data-price]="sizes.price"  (change)="changeCount($event,sizes.price,sizes.id)" style="max-width: 50px" min="0" value="0" type="number">
+                </td>
+                <td>
+                  <div  class="color">
+
+                    <input class="priceClass" [attr.data-price]="sizes.price" (change)="changeCount($event,sizes.price,sizes.id)" style="max-width: 50px" min="0" value="0" type="number">
+                  </div>
+                </td>
+                <td>
+                  <span>$ </span>
+                  <span id="price_{{sizes.id}}">{{sizes.price}}</span>
+                   <span> per 1 pcs</span>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -102,5 +102,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="productOption" class="description container" [innerHTML]="productOption.item.item_description">
+
   </div>
 </div>
