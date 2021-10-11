@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../services/product.service";
-import {Product} from "../shared/interfaces";
+import {Product, ProductB2b} from "../shared/interfaces";
 import {ActivatedRoute} from "@angular/router";
 
 
@@ -11,7 +11,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductPageComponent implements OnInit {
   product: any
-
+  black:boolean = true
+  white:boolean;
+  productOption:ProductB2b
   constructor(
     private serviceProduct: ProductService,
     private route: ActivatedRoute,
@@ -27,8 +29,21 @@ export class ProductPageComponent implements OnInit {
       //   console.log(error)
       // })
     })
+    this.serviceProduct.getProduct(1).subscribe((res:ProductB2b) =>{
+
+      this.productOption = res
+      console.log(this.productOption)
+    })
+  }
+  changeColor(color){
+    if (color === 'black'){
+      this.white = false
+      this.black = true
+    }else {
+      this.white = true
+      this.black = false
+    }
 
   }
-
 
 }

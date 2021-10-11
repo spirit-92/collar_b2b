@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Design} from "../shared/interfaces";
+import {Design, ProductB2b} from "../shared/interfaces";
 
 
 @Injectable({
@@ -29,6 +29,10 @@ export class ProductService {
   }
   getProductByIdOrder(id): Observable<any> {
     return this.http.get<any>(`${environment.host}/nyVladikGetProductOrderById?id=${id}`)
+  }
+  getProduct(id): Observable<ProductB2b> {
+    // return this.http.get<any>(`${environment.host}/nyVladikGetProductOrderById?id=${id}`)
+    return this.http.get<ProductB2b>(`https://b2b.waudog.ua/index.php?route=api/item&category_id=1&design_id=1`)
   }
   public underCategories(catalogs:any[]){
    return  this.underCategory$.next(catalogs);

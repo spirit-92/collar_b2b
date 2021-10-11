@@ -1,12 +1,139 @@
 .container__product{
   margin-top: 200px;
+
 }
 .product__h1{
+
   font-size: 38px;
   color: #4D4D4D;
   font-weight:normal ;
   line-height: 44px;
+  font-family: Montserrat serif;
   b{
     font-weight: 600;
+    font-family: Montserrat serif;
   }
+}
+.product__description{
+  margin-left: 50px
+}
+.product__description-price{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.price{
+  h3{
+    font-family: Montserrat serif;
+    margin: 0;
+    color: #4D4D4D;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    text-transform: uppercase;
+
+  }
+}
+.description__availability{
+  p{
+    margin: 0;
+  }
+  .availability{
+    color: #4D4D4D;
+    //font-family: Montserrat serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .sku{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+.product__description__hr{
+  border: 1px solid #E60004;
+  margin-top: 25px;
+}
+.color{
+  .color__def{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: red;
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .black{
+    background: black;
+  }
+  .white{
+    background: white;
+    border: 1px solid #C4C4C4;
+  }
+  .icon__done{
+    color: red;
+  }
+}
+.description__color{
+  display: flex;
+
+
+  .description__color_h3{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
+    margin: 0 10px 0 0;
+  }
+  .description__color_span{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+.color{
+  display: flex;
+  width: 140px;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.product__description__design{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.design__img{
+  margin-top: 15px;
+}
+.size-container{
+  margin-top: 40px;
+}
+.size__table{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.size__ul{
+  list-style: none;
+}
+.size{
+  text-align: center;
+  border-right: 2px solid #4D4D4D;
+}
+.size-first{
+  border-left: 2px solid #4D4D4D;
 }

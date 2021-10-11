@@ -23,3 +23,52 @@ export interface Design {
 
 
 }
+export interface ProductB2b {
+  "item": {
+    "item_id":string,
+    "item_name": string,
+    "category_name": string,
+    "design_name": string,
+    "item_description": string
+  },
+  "options": {
+    "size": [
+      {
+        "id": string,
+        "name": string,
+        "price": number
+      },
+      {
+        "id": string,
+        "name": string,
+        "price": number
+      },
+      {
+        "id": string,
+        "name":string,
+        "price": number
+      },
+      {
+        "id": string,
+        "name": string,
+        "price":number
+      }
+    ],
+    "base": [
+      {
+        "price": number
+      }
+    ],
+    "color": [
+      {
+        "id": string,
+        "name": string
+      },
+      {
+        "id": string,
+        "name": string
+      }
+    ]
+  }
+
+}

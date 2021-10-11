@@ -32,11 +32,72 @@
       </div>
       <div class="col-md-6">
         <div class="product__description">
+<!-- название-->
           <div class="product__description-top">
             <h1 class="product__h1">
               КОЖАНЫЙ ОШЕЙНИК
               <b>WAUDOG ETHNO</b>
             </h1>
+          </div>
+<!-- цена и sku-->
+          <div class="product__description-price">
+            <div class="price"><h3> Sum : 0 $</h3></div>
+            <div class="description__availability">
+              <p class="availability">В НАЛИЧИИ</p>
+              <p class="sku">SKU#: 5557</p>
+            </div>
+          </div>
+          <div class="product__description__hr"></div>
+<!-- цвет и принт-->
+          <div class="product__description__design">
+            <div class="color_container">
+            <div class="description__color">
+              <h3 class="description__color_h3">Color: </h3>
+              <span class="description__color_span">{{black?'black':'white'}}</span>
+            </div>
+            <div  class="color">
+              <div (click)="changeColor('black')" class="color__def black">
+                <mat-icon class="icon__done" *ngIf="black" aria-hidden="false" aria-label="Example done icon">done</mat-icon>
+              </div>
+              <div (click)="changeColor('white')" class="color__def white">
+                <mat-icon class="icon__done" *ngIf="white" aria-hidden="false" aria-label="Example done icon">done</mat-icon>
+              </div>
+
+            </div>
+            </div>
+            <div class="print__container">
+              <div class="description__color">
+                <h3 class="description__color_h3">ПРИНТ: </h3>
+                <span class="description__color_span">ETHNO</span>
+              </div>
+              <div class="design__img">
+              <img src="assets/main/designCard.jpg" alt="">
+              </div>
+            </div>
+          </div>
+<!-- размер-->
+          <div class="size-container">
+<!--            заголовок таблицы-->
+
+
+            <table *ngIf="productOption" class="table">
+              <thead>
+              <tr>
+                <th scope="col">SIZE</th>
+                <th scope="col">COUNT</th>
+                <th scope="col">COLOR</th>
+                <th scope="col">PRICE</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let sizes of productOption.options.size">
+                <th scope="row">{{sizes.name}}</th>
+                <td><input style="max-width: 50px" min="0" type="number"></td>
+                <td> black white</td>
+                <td>0$</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
