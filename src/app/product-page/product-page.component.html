@@ -54,7 +54,7 @@
             <div class="print__container">
               <div class="description__color">
                 <h3 class="description__color_h3">DESIGN: </h3>
-                <span class="description__color_span">{{productOption.item.design_name}}</span>
+                <span *ngIf="productOption" class="description__color_span">{{productOption.item.design_name}}</span>
               </div>
             </div>
           </div>
@@ -103,7 +103,8 @@
       </div>
     </div>
   </div>
-  <div *ngIf="productOption" class="description container" [innerHTML]="productOption.item.item_description">
-
+  <div *ngIf="productOption" >
+  <div class="description container" [innerHTML]="productOption.item.item_description">
+  </div>
   </div>
 </div>
