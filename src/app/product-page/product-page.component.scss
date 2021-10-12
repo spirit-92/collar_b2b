@@ -8,10 +8,10 @@
   color: #4D4D4D;
   font-weight:normal ;
   line-height: 44px;
-  font-family: Montserrat serif;
+  font-family: 'Montserrat',sans-serif;
   b{
     font-weight: 600;
-    font-family: Montserrat serif;
+    font-family: 'Montserrat',sans-serif;
   }
 }
 .product__description{
@@ -27,7 +27,7 @@
 
 .price{
   h3{
-    font-family: Montserrat serif;
+    font-family: 'Montserrat',sans-serif;
     margin: 0;
     color: #4D4D4D;
     font-weight: bold;
@@ -84,7 +84,7 @@
 
 
   .description__color_h3{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat',sans-serif !important;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -93,7 +93,7 @@
     margin: 0 10px 0 0;
   }
   .description__color_span{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat',sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -141,3 +141,21 @@ td{
 tr{
   vertical-align: middle !important;
 }
+.btn__addCard{
+  transition: .5s;
+  background: none;
+  border: 1px solid #E60004;
+  color: #E60004;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat',sans-serif;
+  padding: 11px 7px;
+  &:hover{
+    background: #E60004;
+    color: white;
+  }
+}
+

@@ -14,9 +14,9 @@ const routes: Routes = [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
       {path: 'catalog', component: CatalogDegComponent},
-      {path: 'catalog/design/:id', component: DesignProductComponent},
-      {path: 'catalog/:/:id', component: UnderCatalogComponent},
-      {path: 'catalog/design/:id/product/:id', component: ProductPageComponent},
+      {path: 'catalog/design/:design', component: DesignProductComponent},
+      {path: 'catalog/:/:design', component: UnderCatalogComponent},
+      {path: 'catalog/design/:design/product/:id', component: ProductPageComponent},
 
     ]
   },
@@ -26,7 +26,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: PreloadAllModules,
+    paramsInheritanceStrategy: 'always'
   })],
   exports: [RouterModule]
 })

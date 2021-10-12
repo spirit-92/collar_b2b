@@ -1,7 +1,9 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {Product, ProductB2b} from "../shared/interfaces";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -19,11 +21,16 @@ export class ProductPageComponent implements OnInit  {
     private serviceProduct: ProductService,
     private route: ActivatedRoute,
     private elRef:ElementRef,
-
+    private toaster: ToastrService,
+    private loader: NgxSpinnerService,
+    private router :Router
   ) {
   }
 
   ngOnInit(): void {
+    this.loader.show()
+
+
     this.route.params.subscribe(res => {
       // this.serviceProduct.getProductByIdOrder(res.id).subscribe(res => {
       //   console.log(res,'!!')
@@ -31,12 +38,19 @@ export class ProductPageComponent implements OnInit  {
       // },error => {
       //   console.log(error)
       // })
-    })
-    this.serviceProduct.getProduct(1).subscribe((res:ProductB2b) =>{
+      console.log(res.design,'!!')
+      this.serviceProduct.getProduct(res.design,res.id).subscribe((res:ProductB2b) =>{
+        this.productOption = res
+        this.loader.hide()
+        console.log(this.productOption)
+      },error => {
+        this.toaster.error('error')
+      })
 
-      this.productOption = res
-      console.log(this.productOption)
+    },error => {
+      this.toaster.error('error')
     })
+
   }
 
   changeColor(color){
@@ -54,7 +68,7 @@ export class ProductPageComponent implements OnInit  {
     let allPrice = this.elRef.nativeElement.querySelectorAll(`.priceClass`)
     let sum = 0
     allPrice.forEach( price =>{
-      console.log(price.value , price.getAttribute('data-price'))
+
 
       let totalPrice = price.value * price.getAttribute('data-price')
       sum += +totalPrice

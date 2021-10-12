@@ -3,7 +3,7 @@
     <h1 class="design__h1">Design</h1>
     <div class="row">
       <a   href="javascript:void(0);" *ngFor="let design of designs"
-           [routerLink]="['/catalog','design',design.id,'product',1]"
+           [routerLink]="['/catalog','design',id__categoriesDes,'product',design.id]"
            class="col-md-12 card__a">
         <div class="card-categories">
           <h2 class="categories__h3">{{design.name}}</h2>

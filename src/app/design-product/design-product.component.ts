@@ -30,12 +30,13 @@ export class DesignProductComponent implements OnInit {
     this.loader.show()
     this.route.params.pipe(
       switchMap((params):any => {
-        this.id__categoriesDes = params['id']
-        return this.productService.getCategories_des(params['id'])
+        this.id__categoriesDes = params['design']
+        return this.productService.getCategories_des(params['design'])
 
       })
     ).subscribe(product => {
       console.log(product)
+
       if (product.hasOwnProperty('design')){
           // @ts-ignore
         this.designs = product.design

@@ -22,11 +22,12 @@ export class UnderCatalogComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.pipe(
       switchMap((params):any => {
-        this.id__categoriesDes = params['id']
-        return this.productService.getCategories_des(params['id'])
+        this.id__categoriesDes = params['design']
+        return this.productService.getCategories_des(params['design'])
 
       })
     ).subscribe(product => {
+      console.log(product)
       // @ts-ignore
       this.categories = product.category
 

@@ -29,30 +29,22 @@ export interface ProductB2b {
     "item_name": string,
     "category_name": string,
     "design_name": string,
-    "item_description": string
+    "item_description": string,
+    currency_code:string
   },
   "options": {
+    images: [
+      {
+        item_image: string
+      }
+    ],
     "size": [
       {
         "id": string,
         "name": string,
         "price": number
       },
-      {
-        "id": string,
-        "name": string,
-        "price": number
-      },
-      {
-        "id": string,
-        "name":string,
-        "price": number
-      },
-      {
-        "id": string,
-        "name": string,
-        "price":number
-      }
+
     ],
     "base": [
       {
@@ -64,10 +56,6 @@ export interface ProductB2b {
         "id": string,
         "name": string
       },
-      {
-        "id": string,
-        "name": string
-      }
     ]
   }
 

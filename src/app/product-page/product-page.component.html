@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="slider__product">
-          <carousel
+          <carousel *ngIf="productOption"
 
                     [objectFit]="'cover'"
                     [cellWidth]="'100%'"
@@ -14,18 +14,10 @@
                     [autoplay]="false"
                     [dots]="false"
                     [loop]="true">
-            <div class="carousel-cell">
-              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
+            <div *ngFor="let img of productOption.options.images"  class="carousel-cell">
+              <img [src]=img.item_image alt="">
             </div>
-            <div class="carousel-cell">
-              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
-            </div>
-            <div class="carousel-cell">
-              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
-            </div>
-            <div class="carousel-cell">
-              <img src="https://waudog.ua/image/catalog/products2/00b112-0001-01_00_01.jpg" alt="">
-            </div>
+
 
           </carousel>
         </div>
@@ -41,7 +33,10 @@
           </div>
 <!-- цена и sku-->
           <div class="product__description-price">
-            <div class="price"><h3> Sum : {{sum}} $</h3></div>
+            <div *ngIf="productOption"  class="price"><h3> Sum : {{sum}}
+              <span *ngIf="productOption.item.currency_code==='EUR'">€ </span>
+              <span *ngIf="productOption.item.currency_code !=='EUR'">$ </span>
+            </h3></div>
 <!--            <div class="description__availability">-->
 <!--              <p class="availability">В НАЛИЧИИ</p>-->
 <!--              <p class="sku">SKU#: 5557</p>-->
@@ -91,13 +86,17 @@
                   </div>
                 </td>
                 <td>
-                  <span>$ </span>
+                  <span *ngIf="productOption.item.currency_code==='EUR'">€ </span>
+                  <span *ngIf="productOption.item.currency_code !=='EUR'">$ </span>
                   <span id="price_{{sizes.id}}">{{sizes.price}}</span>
                    <span> per 1 pcs</span>
                 </td>
               </tr>
               </tbody>
             </table>
+          </div>
+          <div class="container__addCard">
+            <button class="btn__addCard">добавить в корзину</button>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit {
   showAboutProduct(id) {
     this.spinner.show()
     this.productService.getImagesProduct(id).subscribe(res => {
-
+      console.log(res)
       if (res.status === "not found product") {
         this.toast.error('картинок нету')
         this.spinner.hide()
