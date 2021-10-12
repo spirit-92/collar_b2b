@@ -23,6 +23,7 @@ import { CatalogDegComponent } from './catalog-deg/catalog-deg.component';
 import { DesignProductComponent } from './design-product/design-product.component';
 import { UnderCatalogComponent } from './under-catalog/under-catalog.component';
 import {MatIconModule} from "@angular/material/icon";
+
 // import {Swiper} from "swiper";
 // import {SwiperModule} from "swiper/angular";
 
@@ -37,12 +38,14 @@ import {MatIconModule} from "@angular/material/icon";
     CatalogDegComponent,
     DesignProductComponent,
     UnderCatalogComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
     MatButtonModule,
     MatListModule,
     MatCardModule,

@@ -29,6 +29,8 @@ import { OptipnsAdminComponent } from './optipns-admin/optipns-admin.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
 import { EditSizesComponent } from './edit-sizes/edit-sizes.component';
+import { RegistrationComponent } from './registration/registration.component';
+
 
 
 const INTERCEPTOR_PROVIDER:Provider = {
@@ -47,7 +49,8 @@ const INTERCEPTOR_PROVIDER:Provider = {
     AddImgProductPageComponent,
     OptipnsAdminComponent,
     EditCategoriesComponent,
-    EditSizesComponent
+    EditSizesComponent,
+    RegistrationComponent
   ],
     imports: [
         CommonModule,
@@ -58,19 +61,21 @@ const INTERCEPTOR_PROVIDER:Provider = {
         MatInputModule,
         MatIconModule,
         FormsModule,
-        ReactiveFormsModule,
+      ReactiveFormsModule,
         SharedModule,
         RouterModule.forChild([
             {
                 path: '', component: AdminLayoutComponent, children: [
                     {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
+                    {path: 'registration', component: RegistrationComponent},
                     {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
                     {path: 'create', component: CreateProductComponent, canActivate: [AuthGuard]},
                     {path: 'edit/shop', component: OptipnsAdminComponent, canActivate: [AuthGuard]},
                     {path: 'edit/categories', component: EditCategoriesComponent, canActivate: [AuthGuard]},
                     {path: 'edit/sizes', component: EditSizesComponent, canActivate: [AuthGuard]},
                     {path: 'product/:id/edit', component: EditProductPageComponent, canActivate: [AuthGuard]},
+
                     {
                         path: 'product/:id/addImgProduct',
                         component: AddImgProductPageComponent,

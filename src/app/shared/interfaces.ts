@@ -1,6 +1,9 @@
 export interface User {
+  country_id:number,
   email: string,
-  password: string
+  phone: string,
+  password: string,
+  company:string
 }
 
 export interface Shops {
@@ -30,7 +33,7 @@ export interface ProductB2b {
     "category_name": string,
     "design_name": string,
     "item_description": string,
-    currency_code:string
+     currency_code:string
   },
   "options": {
     images: [
@@ -51,7 +54,7 @@ export interface ProductB2b {
         "price": number
       }
     ],
-    "color": [
+    "color"?: [
       {
         "id": string,
         "name": string

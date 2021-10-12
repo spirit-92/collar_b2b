@@ -4,6 +4,9 @@ import {AdminService} from "../shared/services/admin.service";
 import {Shops} from "../../shared/interfaces";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-create-product',
@@ -19,6 +22,8 @@ export class CreateProductComponent implements OnInit {
   file: any;
   fileFormat: string;
   errorImg = false
+  filteredStates: Observable<any[]>;
+  stateCtrl = new FormControl();
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(
@@ -28,6 +33,16 @@ export class CreateProductComponent implements OnInit {
     private spinner: NgxSpinnerService,
   ) {
     this.createForm()
+    this.filteredStates = this.stateCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(state => state ? this._filterStates(state) : this.categories.slice())
+      );
+  }
+  private _filterStates(value: string): any[] {
+    const filterValue = value.toLowerCase();
+
+    return this.categories.filter(state => state.name.toLowerCase().includes(filterValue));
   }
 
   ngOnInit(): void {

@@ -10,7 +10,9 @@ export class AdminService {
     private http: HttpClient
   ) {
   }
-
+  getCountry(): Observable<any> {
+    return this.http.get<any>(`${environment.host}/index.php?route=api/register&country`)
+  }
   getShops(): Observable<any> {
     return this.http.get<any>(`${environment.host}/nyVladikGetShops`)
   }
@@ -130,4 +132,5 @@ export class AdminService {
       id
     })
   }
+
 }

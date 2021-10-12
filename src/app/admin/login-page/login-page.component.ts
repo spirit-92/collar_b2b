@@ -51,7 +51,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit() {
     this.spinner.show()
-    const user: User = {
+    const user: any = {
       email: this.emailFormControl.value,
       password: this.passwordFormControl.value
     }

@@ -62,10 +62,11 @@
                 <th scope="col">SIZE</th>
                 <th scope="col">
                   <div class="color">
-                    <div  class="color__def black"></div>
+                    <div *ngIf="productOption.options.color" class="color__def black"></div>
+                    <div *ngIf="!productOption.options.color">QT.</div>
                   </div>
                 </th>
-                <th scope="col">
+                <th *ngIf="productOption.options.color" scope="col">
                   <div class="color">
                     <div  class="color__def white"></div>
                   </div>
@@ -79,7 +80,7 @@
                 <td>
                   <input class="priceClass" [attr.data-price]="sizes.price"  (change)="changeCount($event,sizes.price,sizes.id)" style="max-width: 50px" min="0" value="0" type="number">
                 </td>
-                <td>
+                <td *ngIf="productOption.options.color">
                   <div  class="color">
 
                     <input class="priceClass" [attr.data-price]="sizes.price" (change)="changeCount($event,sizes.price,sizes.id)" style="max-width: 50px" min="0" value="0" type="number">

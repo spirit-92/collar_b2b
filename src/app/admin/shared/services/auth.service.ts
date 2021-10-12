@@ -22,7 +22,10 @@ export class AuthService {
 
     )
   }
-
+  registration(user):Observable<any>{
+    console.log(user ,'!)!)!')
+    return this.http.post(`${environment.host}index.php?route=api/register-test`, user)
+  }
   logout() {
     this.setToken(null)
   }
@@ -32,7 +35,7 @@ export class AuthService {
   }
 
   private setToken(res) {
-    // console.log(res.token)
+    console.log(res)
     if (res){
       localStorage.setItem('nyVladikTokenAdmin',res.token)
     }else {

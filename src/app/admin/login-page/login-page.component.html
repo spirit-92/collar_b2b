@@ -1,6 +1,6 @@
 <div class="container_login">
 <div class="style_login">
-<h1 class="login_h1">Авторизация</h1>
+<h1 class="login_h1">Authorization</h1>
   <form style="position: relative" (ngSubmit)="onSubmit()" class="example-form form-register">
     <mat-form-field class="example-full-width register-input">
       <mat-label>Email</mat-label>
@@ -42,7 +42,10 @@
         {{error}}
       </strong>
     </mat-error>
-    <button style="margin-top: 40px" class="form-control form__register" type="submit"  mat-raised-button >Авторизоваться
+    <button style="margin-top: 40px" class="form-control form__register" type="submit"  mat-raised-button >
+      Authorization
+    </button>
+    <button routerLink="/admin/registration" style="margin-top: 40px" class="form-control form__register"   mat-raised-button >Registration
     </button>
   </form>
   </div>
