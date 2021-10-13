@@ -20,28 +20,28 @@ export class DashboardPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loader.show()
-    this.adminService.getProducts().subscribe(res => {
-      this.products = res.product;
-      this.loader.hide()
-    }, error => {
-      console.log(error)
-      this.loader.hide()
-    }, () => {
-      this.loader.hide()
-    })
+    // this.loader.show()
+    // this.adminService.getProducts().subscribe(res => {
+    //   this.products = res.product;
+    //   this.loader.hide()
+    // }, error => {
+    //   console.log(error)
+    //   this.loader.hide()
+    // }, () => {
+    //   this.loader.hide()
+    // })
   }
 
   deleteProduct(id) {
 
-    this.adminService.deleteProduct(id).subscribe(res => {
-      this.toast.success('Удалено')
-      this.products = this.products.filter(item => {
-        return item.id !== id
-      })
-
-    }, error => {
-      console.log(error)
-    })
+    // this.adminService.deleteProduct(id).subscribe(res => {
+    //   this.toast.success('Удалено')
+    //   this.products = this.products.filter(item => {
+    //     return item.id !== id
+    //   })
+    //
+    // }, error => {
+    //   console.log(error)
+    // })
   }
 }

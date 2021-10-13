@@ -84,20 +84,23 @@ export class RegistrationComponent implements OnInit {
     if (this.emailFormControl.status === 'VALID' && this.passwordFormControl.status === 'VALID'
       && this.phoneFormControl.status === 'VALID'&& this.countryFormControl.status === 'VALID'
     ) {
-      this.auth.registration(user).subscribe((res) => {
-        console.log(res)
-        this.spinner.hide()
-        // this.route.navigate(['/admin', 'dashboard'])
-      }, error => {
-        // console.log(error)
-        // if (error.error.body) {
-        //   this.errorPassword.push(error.error.body);
-        // } else if (typeof error.error.errors.email[0] !== undefined) {
-        //   this.errorPassword.push(error.error.errors.email[0]);
-        // }
-        //
-        // this.spinner.hide()
-      })
+      this.auth.registration(user)
+      this.spinner.hide()
+      this.route.navigate(['/admin', 'dashboard'])
+      // this.auth.registration(user).subscribe((res) => {
+      //   console.log(res)
+      //   this.spinner.hide()
+      //   // this.route.navigate(['/admin', 'dashboard'])
+      // }, error => {
+      //   // console.log(error)
+      //   // if (error.error.body) {
+      //   //   this.errorPassword.push(error.error.body);
+      //   // } else if (typeof error.error.errors.email[0] !== undefined) {
+      //   //   this.errorPassword.push(error.error.errors.email[0]);
+      //   // }
+      //   //
+      //   // this.spinner.hide()
+      // })
     } else {
       this.spinner.hide()
     }

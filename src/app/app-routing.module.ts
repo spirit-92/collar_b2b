@@ -15,7 +15,7 @@ const routes: Routes = [
       {path: '', component: HomePageComponent},
       {path: 'catalog', component: CatalogDegComponent},
       {path: 'catalog/design/:design', component: DesignProductComponent},
-      {path: 'catalog/:/:design', component: UnderCatalogComponent},
+      {path: 'catalog/:catalog_name/:design', component: UnderCatalogComponent},
       {path: 'catalog/design/:design/product/:id', component: ProductPageComponent},
 
     ]

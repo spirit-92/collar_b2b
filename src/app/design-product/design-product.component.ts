@@ -28,6 +28,7 @@ export class DesignProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader.show()
+
     this.route.params.pipe(
       switchMap((params):any => {
         this.id__categoriesDes = params['design']
@@ -35,7 +36,7 @@ export class DesignProductComponent implements OnInit {
 
       })
     ).subscribe(product => {
-      console.log(product)
+      // console.log(product)
 
       if (product.hasOwnProperty('design')){
           // @ts-ignore
@@ -43,8 +44,14 @@ export class DesignProductComponent implements OnInit {
         }else {
         // @ts-ignore
         this.productService.underCategories(product.category)
-        // @ts-ignore
-        this.router.navigate(['/catalog/',product.name ,this.id__categoriesDes]);
+
+        this.route.params.subscribe(params =>{
+          console.log(params['design'])
+          // @ts-ignore
+          // this.router.navigate(['/catalog/',product.name ,this.id__categoriesDes]);
+
+        })
+
 
 
 

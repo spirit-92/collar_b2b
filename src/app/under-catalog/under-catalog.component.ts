@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {switchMap} from "rxjs/operators";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
@@ -17,9 +17,12 @@ export class UnderCatalogComponent implements OnInit {
     private  productService: ProductService,
     private route: ActivatedRoute,
     private loader: NgxSpinnerService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
+
+
     this.route.params.pipe(
       switchMap((params):any => {
         this.id__categoriesDes = params['design']

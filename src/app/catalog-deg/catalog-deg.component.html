@@ -1,14 +1,26 @@
 
 <div style="margin-top: 100px;" class="container">
-  <div class="row">
-    <a   href="javascript:void(0);" *ngFor="let category of categories"
-         [routerLink]="['/catalog/design',category.id]"
+  <div *ngIf="categories" class="row">
+    <div *ngFor="let category of categories">
+    <a   *ngIf="category.id ==='2'" href="javascript:void(0);"
+
+         [routerLink]="['/catalog',category.name, category.id ]"
          class="col-md-4 card__a">
       <div class="card-categories">
         <h2 class="categories__h3">{{category.name}}</h2>
         <img style="max-width: 100%;height: auto" src="{{category.image}}" alt="">
       </div>
     </a>
+      <a  *ngIf="category.id !=='2'"  href="javascript:void(0);"
+
+           [routerLink]="['/catalog/design', category.id ]"
+           class="col-md-4 card__a">
+        <div class="card-categories">
+          <h2 class="categories__h3">{{category.name}}</h2>
+          <img style="max-width: 100%;height: auto" src="{{category.image}}" alt="">
+        </div>
+      </a>
+    </div>
 <!--    <div class="categories__item">-->
 <!--      <ul class="categories__ul">-->
 <!--        <li  *ngFor="let category of categories" >-->

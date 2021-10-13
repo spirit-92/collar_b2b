@@ -24,7 +24,10 @@ export class AuthService {
   }
   registration(user):Observable<any>{
     console.log(user ,'!)!)!')
-    return this.http.post(`${environment.host}index.php?route=api/register-test`, user)
+    return this.http.post(`${environment.host}index.php?route=api/register`, user).pipe(
+      tap(this.setToken),
+
+    )
   }
   logout() {
     this.setToken(null)
