@@ -6,6 +6,7 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {AuthService} from "../shared/services/auth.service";
 import {User} from "../../shared/interfaces";
 import {AdminService} from "../shared/services/admin.service";
+import {ToastrService} from "ngx-toastr";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -47,7 +48,8 @@ export class RegistrationComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private auth: AuthService,
     private fb: FormBuilder,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private toast:ToastrService
   ) {
     this.createForm()
   }
@@ -59,6 +61,8 @@ export class RegistrationComponent implements OnInit {
       this.adminService.getCountry().subscribe(res =>{
         this.countrys = res
         console.log(res)
+      },error => {
+        console.log(error)
       })
     }
   }
@@ -86,21 +90,22 @@ export class RegistrationComponent implements OnInit {
     ) {
       this.auth.registration(user)
       this.spinner.hide()
-      this.route.navigate(['/admin', 'dashboard'])
-      // this.auth.registration(user).subscribe((res) => {
-      //   console.log(res)
-      //   this.spinner.hide()
-      //   // this.route.navigate(['/admin', 'dashboard'])
-      // }, error => {
-      //   // console.log(error)
-      //   // if (error.error.body) {
-      //   //   this.errorPassword.push(error.error.body);
-      //   // } else if (typeof error.error.errors.email[0] !== undefined) {
-      //   //   this.errorPassword.push(error.error.errors.email[0]);
-      //   // }
-      //   //
-      //   // this.spinner.hide()
-      // })
+
+      this.auth.registration(user).subscribe((res) => {
+        console.log(res)
+        this.toast.success(res.success)
+        this.spinner.hide()
+        // this.route.navigate(['/admin', 'dashboard'])
+      }, error => {
+        // console.log(error)
+        // if (error.error.body) {
+        //   this.errorPassword.push(error.error.body);
+        // } else if (typeof error.error.errors.email[0] !== undefined) {
+        //   this.errorPassword.push(error.error.errors.email[0]);
+        // }
+        //
+        // this.spinner.hide()
+      })
     } else {
       this.spinner.hide()
     }

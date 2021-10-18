@@ -15,17 +15,21 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log("CLONE intercept1")
     if (this.auth.isAuthenticated()) {
+      console.log("CLONE intercept")
       req = req.clone({
-        headers:req.headers.append('token',this.auth.token)
+        headers:req.headers.append('Authorization',this.auth.token)
       })
     }
     return next.handle(req)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           console.log(error)
+          console.log("error inter")
           if (error.status === 401) {
             this.auth.logout()
+            console.log("error logout")
             this.router.navigate(['/admin', 'login'], {
               queryParams: {
                 authFailed: true

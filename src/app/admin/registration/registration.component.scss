@@ -20,6 +20,12 @@
   justify-content: center;
 }
 .style_login{
-  transform: translateY(-50%);
+
 }
 
+@media screen and (max-width: 510px) {
+  .form-register{
+    width: 300px;
+  }
+
+}

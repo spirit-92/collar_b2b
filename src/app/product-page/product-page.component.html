@@ -78,12 +78,12 @@
               <tr *ngFor="let sizes of productOption.options.size">
                 <th scope="row">{{sizes.name}}</th>
                 <td>
-                  <input class="priceClass" [attr.data-price]="sizes.price"  (change)="changeCount($event,sizes.price,sizes.id)" style="max-width: 50px" min="0" value="0" type="number">
+                  <input class="priceClass" [attr.data-price]="sizes.price"  (change)="changeCount($event,sizes.price,sizes.id,black)" style="max-width: 50px" min="0" value="0" type="number">
                 </td>
                 <td *ngIf="productOption.options.color">
                   <div  class="color">
 
-                    <input class="priceClass" [attr.data-price]="sizes.price" (change)="changeCount($event,sizes.price,sizes.id)" style="max-width: 50px" min="0" value="0" type="number">
+                    <input class="priceClass" [attr.data-price]="sizes.price" (change)="changeCount($event,sizes.price,sizes.id,white)" style="max-width: 50px" min="0" value="0" type="number">
                   </div>
                 </td>
                 <td>
@@ -97,8 +97,11 @@
             </table>
           </div>
           <div class="container__addCard">
-            <button class="btn__addCard">Add to card</button>
+            <button *ngIf="auth" (click)="addCart()" class="btn__addCard">Add to cart</button>
           </div>
+<!--              <div class="container__addCard">-->
+<!--                <button (click)="addCart()" class="btn__addCard">Add to cart</button>-->
+<!--              </div>-->
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ export class AdminService {
   ) {
   }
   getCountry(): Observable<any> {
-    return this.http.get<any>(`${environment.host}/index.php?route=api/register&country`)
+    return this.http.get<any>(`${environment.host}index.php?route=api/register&country`)
   }
   // getShops(): Observable<any> {
   //   return this.http.get<any>(`${environment.host}/nyVladikGetShops`)

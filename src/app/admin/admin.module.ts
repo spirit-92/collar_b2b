@@ -30,7 +30,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
 import { EditSizesComponent } from './edit-sizes/edit-sizes.component';
 import { RegistrationComponent } from './registration/registration.component';
-
+import {HttpClientModule} from "@angular/common/http";
 
 
 const INTERCEPTOR_PROVIDER:Provider = {
@@ -62,6 +62,7 @@ const INTERCEPTOR_PROVIDER:Provider = {
         MatIconModule,
         FormsModule,
       ReactiveFormsModule,
+      HttpClientModule,
         SharedModule,
         RouterModule.forChild([
             {

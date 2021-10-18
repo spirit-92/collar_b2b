@@ -32,3 +32,13 @@
   font-weight: 500;
 
 }
+@media screen and (max-width: 467px) {
+
+  .card__a{
+    display: block;
+  }
+  .card-categories{
+    flex-direction: column;
+  }
+
+}

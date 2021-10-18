@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
   ]);
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(6),
+    Validators.minLength(4),
   ]);
   matcher = new MyErrorStateMatcher();
 
@@ -40,7 +40,7 @@ export class LoginPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('nyVladikTokenAdmin')){
+    if (localStorage.getItem('b2b_token')){
       this.route.navigate(['/admin', 'dashboard'])
     }
   }
@@ -55,16 +55,16 @@ export class LoginPageComponent implements OnInit {
       email: this.emailFormControl.value,
       password: this.passwordFormControl.value
     }
+
     if (this.emailFormControl.status === 'VALID' && this.passwordFormControl.status === 'VALID') {
+
       this.auth.login(user).subscribe(() => {
         this.spinner.hide()
         this.route.navigate(['/admin', 'dashboard'])
+        document.location.reload()
       }, error => {
-        if (error.error.body) {
-          this.errorPassword.push(error.error.body);
-        } else if (typeof error.error.errors.email[0] !== undefined) {
-          this.errorPassword.push(error.error.errors.email[0]);
-        }
+        console.log(error)
+
 
         this.spinner.hide()
       })

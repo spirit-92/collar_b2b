@@ -45,10 +45,14 @@ export interface ProductB2b {
       {
         "id": string,
         "name": string,
-        "price": number
+        "price": number,
+        "qt":number,
+        "color_id"?:number,
+        "color":any
       },
 
     ],
+    "sizes":any,
     "base": [
       {
         "price": number

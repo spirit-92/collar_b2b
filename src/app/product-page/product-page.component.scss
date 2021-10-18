@@ -162,3 +162,16 @@ tr{
 .description{
   margin-top: 50px;
 }
+@media screen and (max-width: 480px) {
+
+ .product__description{
+   margin: 0 15px;
+ }
+.slider__product{
+  width: 260px;
+  margin: 0  auto;
+}
+  .container__product{
+    margin-top: 0;
+  }
+}

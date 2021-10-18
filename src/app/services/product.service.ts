@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Design, ProductB2b} from "../shared/interfaces";
 
 
@@ -36,6 +36,26 @@ export class ProductService {
   }
   public underCategories(catalogs:any[]){
    return  this.underCategory$.next(catalogs);
+  }
+  addCart(item):Observable<any>{
+    console.log('ADD FUN')
+    return this.http.post<any>(`https://b2b.waudog.ua/index.php?route=api/cart&add=1`,item
+    )
+  }
+  isAuth():Observable<any>{
+    // if (localStorage.getItem('b2b_token') !== null){
+    //   const myHeaders = new HttpHeaders().set('Authorization',
+    //     'Bearer ' + localStorage.getItem('b2b_token')
+    //     );
+    //
+    //   return this.http.post<any>(`https://b2b.waudog.ua/index.php?route=api/auth-token`,{
+    //     'token': localStorage.getItem('b2b_token')
+    //   },{headers:myHeaders})
+    // }
+    return this.http.post<any>(`https://b2b.waudog.ua/index.php?route=api/auth-token`,{
+      'token': localStorage.getItem('b2b_token') !== null ?localStorage.getItem('b2b_token'):'0'
+    })
+
   }
 
 }

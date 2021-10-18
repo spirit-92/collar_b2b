@@ -19,3 +19,11 @@
 .card__a{
   color: #212121;
 }
+@media screen and (max-width: 467px) {
+.card__a{
+  display: block;
+  margin: 0 15px;
+}
+
+
+}
