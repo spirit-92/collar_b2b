@@ -26,6 +26,10 @@ export interface Design {
 
 
 }
+export interface basketShow {
+
+
+}
 export interface ProductB2b {
   "item": {
     "item_id":string,

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {NgxSpinnerService} from "ngx-spinner";
 import {User} from "../../shared/interfaces";
 import {AuthService} from "../shared/services/auth.service";
+import {AdminService} from "../shared/services/admin.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -36,7 +37,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     public route: Router,
     private spinner: NgxSpinnerService,
-    private auth: AuthService
+    private auth: AuthService,
+
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +62,7 @@ export class LoginPageComponent implements OnInit {
 
       this.auth.login(user).subscribe(() => {
         this.spinner.hide()
-        this.route.navigate(['/admin', 'dashboard'])
+        this.route.navigate(['/account', 'dashboard'])
         document.location.reload()
       }, error => {
         console.log(error)

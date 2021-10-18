@@ -116,66 +116,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   addCart() {
-
-    let item = {
-      "client_id":this.customer_id,
-      "item_id":this.productOption.item.item_id,
-      "options":{
-        "size":[
-          {
-            "id":"8",
-            "price":10,
-            "qt":100,
-            "color_id":1
-          },
-          {
-            "id":"9",
-            "price":10,
-            "qt":200,
-            "color_id":1
-          },
-          {
-            "id":"10",
-            "price":10,
-            "qt":300,
-            "color_id":1
-          },
-          {
-            "id":"11",
-            "price":10,
-            "qt":400,
-            "color_id":1
-          },
-          {
-            "id":"8",
-            "price":10,
-            "qt":100,
-            "color_id":2
-          },
-          {
-            "id":"9",
-            "price":10,
-            "qt":200,
-            "color_id":2
-          },
-          {
-            "id":"10",
-            "price":10,
-            "qt":300,
-            "color_id":2
-          },
-          {
-            "id":"11",
-            "price":10,
-            "qt":400,
-            "color_id":2
-          }
-        ]
-      }
-    }
-      console.log(this.addToCart)
+    this.serviceProduct.showBasket()
     this.serviceProduct.addCart(this.addToCart).subscribe(res =>{
       console.log(res)
+
       this.toaster.success('add to cart')
     },error =>     this.toaster.error('error add to cart'))
     // this.productOption.options.size.forEach(option =>{

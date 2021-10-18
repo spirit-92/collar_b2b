@@ -20,7 +20,7 @@ const routes: Routes = [
 
     ]
   },
-  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)},
+  {path: 'account', loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)},
   { path: '**', redirectTo: '/' }
 ];
 

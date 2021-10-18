@@ -10,6 +10,7 @@ import {Design, ProductB2b} from "../shared/interfaces";
 })
 export class ProductService {
   public underCategory$ = new Subject<any[]>();
+  public showBasket$ = new Subject<any[]>();
   constructor(
     private http: HttpClient
   ) { }
@@ -34,13 +35,20 @@ export class ProductService {
     // return this.http.get<any>(`${environment.host}/nyVladikGetProductOrderById?id=${id}`)
     return this.http.get<ProductB2b>(`https://b2b.waudog.ua/index.php?route=api/item&category_id=${category_id}&design_id=${design_id}`)
   }
-  public underCategories(catalogs:any[]){
+   underCategories(catalogs:any[]){
    return  this.underCategory$.next(catalogs);
   }
   addCart(item):Observable<any>{
     console.log('ADD FUN')
     return this.http.post<any>(`https://b2b.waudog.ua/index.php?route=api/cart&add=1`,item
     )
+  }
+
+  showOrderBasket():Observable<any>{
+    return this.http.get<any>(`https://b2b.waudog.ua/index.php?route=api/cart&get`,{})
+  }
+  showBasket(){
+    this.showBasket$.next()
   }
   isAuth():Observable<any>{
     // if (localStorage.getItem('b2b_token') !== null){
@@ -57,6 +65,7 @@ export class ProductService {
     })
 
   }
+
 
 }
 // ${environment.host}index.php?route=api/item&category_id=${id}&design_id=1

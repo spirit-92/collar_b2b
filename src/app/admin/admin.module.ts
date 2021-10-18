@@ -67,7 +67,7 @@ const INTERCEPTOR_PROVIDER:Provider = {
         RouterModule.forChild([
             {
                 path: '', component: AdminLayoutComponent, children: [
-                    {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
+                    {path: '', redirectTo: '/account/login', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
                     {path: 'registration', component: RegistrationComponent},
                     {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
