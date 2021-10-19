@@ -30,6 +30,9 @@ export class DashboardPageComponent implements OnInit {
     // }, () => {
     //   this.loader.hide()
     // })
+    this.adminService.getCountry().subscribe(res =>{
+      console.log(res)
+    })
   }
 
   deleteProduct(id) {

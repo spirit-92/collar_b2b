@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {Observable, of, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Design, ProductB2b} from "../shared/interfaces";
+import {catchError, map} from "rxjs/operators";
 
 
 @Injectable({
@@ -11,6 +12,7 @@ import {Design, ProductB2b} from "../shared/interfaces";
 export class ProductService {
   public underCategory$ = new Subject<any[]>();
   public showBasket$ = new Subject<any[]>();
+  public isAuth$:any =null
   constructor(
     private http: HttpClient
   ) { }
@@ -60,12 +62,37 @@ export class ProductService {
     //     'token': localStorage.getItem('b2b_token')
     //   },{headers:myHeaders})
     // }
-    return this.http.post<any>(`https://b2b.waudog.ua/index.php?route=api/auth-token`,{
-      'token': localStorage.getItem('b2b_token') !== null ?localStorage.getItem('b2b_token'):'0'
-    })
+    return this.http.get<any>(`https://b2b.waudog.ua/index.php?route=api/auth-token&token=${localStorage.getItem('b2b_token')}`)
+      .pipe(
+      map(()=>{
+
+        return  true
+      }),catchError(err => {
+
+        return of(false);
+      })
+    )
+  }
+   getToken(): Observable<boolean> {
+
+    const expDate = localStorage.getItem('b2b_token-exp')
+     if (+expDate < Math.round(new Date().getTime() / 1000 )){
+      console.log('logout')
+      this.logout()
+      return  of(false)
+
+    }else {
+      return  this.isAuth()
+
+
+     }
+
+
 
   }
-
+  logout() {
+    localStorage.clear()
+  }
 
 }
 // ${environment.host}index.php?route=api/item&category_id=${id}&design_id=1

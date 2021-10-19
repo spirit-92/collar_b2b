@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("CLONE intercept1")
+    console.log("CLONE intercept not auth")
     if (this.auth.isAuthenticated()) {
       console.log("CLONE intercept")
       req = req.clone({

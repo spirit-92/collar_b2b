@@ -38,13 +38,14 @@ export class LoginPageComponent implements OnInit {
     public route: Router,
     private spinner: NgxSpinnerService,
     private auth: AuthService,
-
+    private adminService: AdminService,
   ) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('b2b_token')){
-      this.route.navigate(['/admin', 'dashboard'])
+      this.route.navigate(['/account', 'dashboard'])
     }
+
   }
 
   password() {

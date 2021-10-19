@@ -19,7 +19,10 @@ export class HeaderComponent implements OnInit {
     private productService:ProductService,
     private _eref: ElementRef
   ) {
-    this.authBool = !!localStorage.getItem('b2b_token')
+    this.productService.getToken().subscribe(res =>{
+       this.authBool = res
+
+    })
     this.auth.getCountry()
   }
 
@@ -32,7 +35,6 @@ export class HeaderComponent implements OnInit {
     }))
   }
   logout() {
-    localStorage.removeItem('b2b_token')
     localStorage.clear()
     document.location.reload()
   }
