@@ -27,9 +27,24 @@ export interface Design {
 
 }
 export interface basketShow {
-
-
+  "total": string,
+  "currency": string,
+  "items": [
+    {
+      "id": string,
+      "name": string,
+      "image": string,
+      "sizes": [
+        {
+          "id": string,
+          "qt": string,
+          "sum": string,
+        }
+      ]
+    },
+  ]
 }
+
 export interface ProductB2b {
   "item": {
     "item_id":string,

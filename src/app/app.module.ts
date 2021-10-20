@@ -25,6 +25,7 @@ import { UnderCatalogComponent } from './under-catalog/under-catalog.component';
 import {MatIconModule} from "@angular/material/icon";
 import {HeaderComponent} from "./shared/components/header/header.component";
 import {FooterComponent} from "./shared/components/footer/footer.component";
+import { OrderPageComponent } from './order-page/order-page.component';
 
 // import {Swiper} from "swiper";
 // import {SwiperModule} from "swiper/angular";
@@ -41,7 +42,8 @@ import {FooterComponent} from "./shared/components/footer/footer.component";
     DesignProductComponent,
     UnderCatalogComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,

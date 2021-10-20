@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable, of, Subject} from "rxjs";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Design, ProductB2b} from "../shared/interfaces";
-import {catchError, map} from "rxjs/operators";
+import {basketShow, Design, ProductB2b} from "../shared/interfaces";
+import {catchError, map, tap} from "rxjs/operators";
 
 
 @Injectable({
@@ -46,8 +46,8 @@ export class ProductService {
     )
   }
 
-  showOrderBasket():Observable<any>{
-    return this.http.get<any>(`https://b2b.waudog.ua/index.php?route=api/cart&get`,{})
+  showOrderBasket():Observable<basketShow>{
+    return this.http.get<basketShow>(`https://b2b.waudog.ua/index.php?route=api/cart&get`,{})
   }
   showBasket(){
     this.showBasket$.next()
@@ -73,6 +73,11 @@ export class ProductService {
       })
     )
   }
+  getUser():Observable<any>{
+    return this.http.get<any>(`https://b2b.waudog.ua/index.php?route=api/auth-token&token=${localStorage.getItem('b2b_token')}`)
+
+  }
+
    getToken(): Observable<boolean> {
 
     const expDate = localStorage.getItem('b2b_token-exp')
@@ -90,8 +95,13 @@ export class ProductService {
 
 
   }
-  logout() {
-    localStorage.clear()
+  logout():Observable<any> {
+    return this.http.get(`${environment.host}index.php?route=api/logout`)
+
+  }
+  orderSave():Observable<any>{
+    return this.http.get(`https://b2b.waudog.ua/index.php?route=api/order&add`)
+
   }
 
 }

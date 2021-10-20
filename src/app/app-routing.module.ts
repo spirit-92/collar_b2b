@@ -6,6 +6,7 @@ import {ProductPageComponent} from "./product-page/product-page.component";
 import {CatalogDegComponent} from "./catalog-deg/catalog-deg.component";
 import {DesignProductComponent} from "./design-product/design-product.component";
 import {UnderCatalogComponent} from "./under-catalog/under-catalog.component";
+import {OrderPageComponent} from "./order-page/order-page.component";
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent},
       {path: 'catalog', component: CatalogDegComponent},
+      {path: 'order', component: OrderPageComponent},
       {path: 'catalog/design/:design', component: DesignProductComponent},
       {path: 'catalog/:catalog_name/:design', component: UnderCatalogComponent},
       {path: 'catalog/design/:design/product/:id', component: ProductPageComponent},

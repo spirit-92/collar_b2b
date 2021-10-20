@@ -17,6 +17,7 @@ export class ProductPageComponent implements OnInit {
   white = null
   productOption: ProductB2b
   sum = 0
+  defSize
   auth:boolean =false;
   customer_id;
   addToCart = {
@@ -26,7 +27,7 @@ export class ProductPageComponent implements OnInit {
       "size":[]
     }
   }
-  b
+
   constructor(
     private serviceProduct: ProductService,
     private route: ActivatedRoute,
@@ -40,12 +41,10 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.serviceProduct.isAuth().subscribe(res =>{
+    this.serviceProduct.getUser().subscribe(res =>{
       console.log(res,'!!!!!')
       this.auth = res.success
       this.customer_id = res.customer_id
-
-
     },error => {
       console.log(error)
       this.auth = false
@@ -63,6 +62,7 @@ export class ProductPageComponent implements OnInit {
       console.log(res.design, '!!')
 
       this.serviceProduct.getProduct(res.design, res.id).subscribe((res: ProductB2b) => {
+        this.defSize = res.options.size
         this.productOption = res
         this.addToCart.options.size = res.options.sizes
 
@@ -93,9 +93,6 @@ export class ProductPageComponent implements OnInit {
   }
 
   changeCount(event: Event, price, idTotal,color =0) {
-
-    console.log(color)
-
     this.addToCart.options.size.forEach(size =>{
       if (size.id === idTotal){
         if (+size.color === +color){
@@ -105,6 +102,7 @@ export class ProductPageComponent implements OnInit {
       }
     })
     let allPrice = this.elRef.nativeElement.querySelectorAll(`.priceClass`)
+
     let sum = 0
     allPrice.forEach(price => {
 
@@ -116,16 +114,52 @@ export class ProductPageComponent implements OnInit {
   }
 
   addCart() {
-    this.serviceProduct.showBasket()
-    this.serviceProduct.addCart(this.addToCart).subscribe(res =>{
-      console.log(res)
 
-      this.toaster.success('add to cart')
-    },error =>     this.toaster.error('error add to cart'))
-    // this.productOption.options.size.forEach(option =>{
-    //   console.log(option)
-    //   item.options.size.push(option)
-    // })
-    // console.log(this.productOption)
+    let triggerAdd = false
+
+
+
+    this.elRef.nativeElement.querySelectorAll(`.priceClass`).forEach(item =>{
+      if (item.value !== '0'){
+        triggerAdd = true
+      }
+    })
+
+    if (triggerAdd){
+
+      this.sum = 0
+      this.elRef.nativeElement.querySelectorAll(`.priceClass`).forEach(item =>{
+          item.value = 0
+        })
+      console.log(this.addToCart,'set')
+      this.serviceProduct.addCart(this.addToCart).subscribe(res =>{
+        this.elRef.nativeElement.querySelectorAll(`.priceClass`).forEach(item =>{
+          item.value = 0
+        })
+
+        this.toaster.success('add to cart')
+        this.serviceProduct.showBasket()
+        this.addToCart = {
+          "client_id":0,
+          "item_id":'',
+          "options":{
+            "size":this.defSize
+          }
+        }
+
+      },error =>     {
+        this.toaster.error('error add to cart')
+        this.addToCart = {
+          "client_id":0,
+          "item_id":'',
+          "options":{
+            "size":this.defSize
+          }
+        }
+      })
+    }else {
+      this.toaster.error('plz add to cart')
+    }
+
   }
 }

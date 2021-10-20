@@ -1,0 +1,41 @@
+<div class="container__product">
+ <div *ngIf="showBasketProduct" class="container">
+   <ul *ngIf="showBasketProduct.items.length" class="basket__ul">
+     <li *ngFor="let product of showBasketProduct.items">
+       <div class="card__img">
+         <img [src]= product.image  alt="">
+       </div>
+       <div class="hr"></div>
+       <div class="description-card">
+         <h3>{{product.name}}</h3>
+         <div class="hr-card"></div>
+         <div *ngFor="let sizes of product.sizes" class="card__body">
+           <div class="size">
+             <p class="size-title">Size: </p>
+             <p class="size-price"> {{sizes.id}}</p>
+           </div>
+           <div class="quantity">
+             <p class="quantity-title">Quantity: </p>
+             <p class="quantity-price"> {{sizes.qt}}</p>
+           </div>
+           <div class="sum">
+             <p class="sum-title">Sum: </p>
+             <p class="sum-price"> {{sizes.sum}}</p>
+           </div>
+           <div class="delete__card">
+
+           </div>
+         </div>
+       </div>
+     </li>
+     <li  class="total__price">
+       <div class="d-flex flex-alight-center">
+         <h3>Sum: {{showBasketProduct.total}}</h3> <span>{{showBasketProduct.currency ==="EUR"?'€':'$'}}</span>
+       </div>
+       <div class="delete__card d-flex flex-alight-center flex-justify-center">
+         <button (click)="saveOrder()" class="toOrder">order</button>
+       </div>
+     </li>
+   </ul>
+ </div>
+</div>
