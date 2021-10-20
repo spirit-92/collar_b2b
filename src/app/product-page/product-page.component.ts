@@ -27,6 +27,8 @@ export class ProductPageComponent implements OnInit {
       "size":[]
     }
   }
+  designID
+  productId
 
   constructor(
     private serviceProduct: ProductService,
@@ -59,9 +61,12 @@ export class ProductPageComponent implements OnInit {
       // },error => {
       //   console.log(error)
       // })
-      console.log(res.design, '!!')
+      this.designID = res.design
+      this.productId = res.id
+      console.log(res.design, '!!',res.id)
 
       this.serviceProduct.getProduct(res.design, res.id).subscribe((res: ProductB2b) => {
+
         this.defSize = res.options.size
         this.productOption = res
         this.addToCart.options.size = res.options.sizes
@@ -73,9 +78,6 @@ export class ProductPageComponent implements OnInit {
         this.addToCart.client_id = this.customer_id
         this.addToCart.item_id = this.productOption.item.item_id
         this.loader.hide()
-
-
-
 
       }, error => {
         this.toaster.error('error')
@@ -139,23 +141,41 @@ export class ProductPageComponent implements OnInit {
 
         this.toaster.success('add to cart')
         this.serviceProduct.showBasket()
-        this.addToCart = {
-          "client_id":0,
-          "item_id":'',
-          "options":{
-            "size":this.defSize
+        this.serviceProduct.getProduct(this.designID, this.productId).subscribe((res: ProductB2b) => {
+          this.defSize = res.options.sizes
+          this.addToCart = {
+            "client_id":this.customer_id,
+            "item_id": res.item.item_id,
+            "options":{
+              "size":this.defSize
+            }
           }
-        }
+          this.loader.hide()
+
+        }, error => {
+          this.toaster.error('error')
+        })
 
       },error =>     {
+        console.log(error)
         this.toaster.error('error add to cart')
-        this.addToCart = {
-          "client_id":0,
-          "item_id":'',
-          "options":{
-            "size":this.defSize
+        console.log(this.defSize,'def')
+
+        this.serviceProduct.getProduct(this.designID, this.productId).subscribe((res: ProductB2b) => {
+          console.log(res)
+          this.defSize = res.options.sizes
+          this.addToCart = {
+            "client_id":this.customer_id,
+            "item_id": res.item.item_id,
+            "options":{
+              "size":this.defSize
+            }
           }
-        }
+          this.loader.hide()
+
+        }, error => {
+          this.toaster.error('error')
+        })
       })
     }else {
       this.toaster.error('plz add to cart')
