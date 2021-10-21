@@ -84,6 +84,7 @@ export class ProductPageComponent implements OnInit {
       })
 
     }, error => {
+
       this.toaster.error('error')
     })
 
