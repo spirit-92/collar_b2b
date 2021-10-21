@@ -27,7 +27,7 @@ p{
 .quantity{
   display: flex;
   margin-bottom: 5px;
-  margin-left: 10px;
+
   margin-right: 10px;
 }
 .quantity-price{
@@ -106,8 +106,8 @@ p{
   background: white;
   min-width: 470px;
   top: 55px;
-  transform: translateX(-50%);
-  left: 50%;
+  right: 10px;
+
   border-radius: 8px;
 }
 .card__img{
@@ -150,12 +150,28 @@ p{
   height: 1px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.8);
 }
+.imgPrevMobile{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto auto;
+  img{
+    max-width: 100px;
+  }
+}
 .size{
   display: flex;
   margin-bottom: 5px;
+  margin-right: 5px;
   .size-title{
     margin-right: 5px;
   }
+}
+.fw700{
+  font-weight: 700;
+}
+.colorCard{
+  margin-right: 5px;
 }
 .header__ul {
   display: flex;
@@ -198,7 +214,21 @@ p{
     color: #212121 !important;
   }
 }
-
+@media screen and (max-width: 490px) {
+  .show-basket{
+    min-width: 300px;
+    right: 0;
+  }
+  .card__img{
+    display: none;
+  }
+  .imgPrevMobile{
+    display: flex;
+  }
+  .hr{
+    display: none;
+  }
+}
 @media screen and (max-width: 991px) {
 
   .header__h1 {

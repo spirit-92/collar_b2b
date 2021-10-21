@@ -35,19 +35,19 @@ export class ProductService {
   }
   getProduct(category_id,design_id): Observable<ProductB2b> {
     // return this.http.get<any>(`${environment.host}/nyVladikGetProductOrderById?id=${id}`)
-    return this.http.get<ProductB2b>(`https://b2b.waudog.ua/index.php?route=api/item&category_id=${category_id}&design_id=${design_id}`)
+    return this.http.get<ProductB2b>(`${environment.host}index.php?route=api/item&category_id=${category_id}&design_id=${design_id}`)
   }
    underCategories(catalogs:any[]){
    return  this.underCategory$.next(catalogs);
   }
   addCart(item):Observable<any>{
     console.log('ADD FUN')
-    return this.http.post<any>(`https://b2b.waudog.ua/index.php?route=api/cart&add=1`,item
+    return this.http.post<any>(`${environment.host}index.php?route=api/cart&add=1`,item
     )
   }
 
   showOrderBasket():Observable<basketShow>{
-    return this.http.get<basketShow>(`https://b2b.waudog.ua/index.php?route=api/cart&get`,{})
+    return this.http.get<basketShow>(`${environment.host}index.php?route=api/cart&get`,{})
   }
   showBasket(){
     this.showBasket$.next()
@@ -62,7 +62,7 @@ export class ProductService {
     //     'token': localStorage.getItem('b2b_token')
     //   },{headers:myHeaders})
     // }
-    return this.http.get<any>(`https://b2b.waudog.ua/index.php?route=api/auth-token&token=${localStorage.getItem('b2b_token')}`)
+    return this.http.get<any>(`${environment.host}index.php?route=api/auth-token&token=${localStorage.getItem('b2b_token')}`)
       .pipe(
       map(()=>{
 
@@ -74,7 +74,7 @@ export class ProductService {
     )
   }
   getUser():Observable<any>{
-    return this.http.get<any>(`https://b2b.waudog.ua/index.php?route=api/auth-token&token=${localStorage.getItem('b2b_token')}`)
+    return this.http.get<any>(`${environment.host}index.php?route=api/auth-token&token=${localStorage.getItem('b2b_token')}`)
 
   }
 
@@ -91,16 +91,18 @@ export class ProductService {
 
 
      }
-
-
-
   }
   logout():Observable<any> {
     return this.http.get(`${environment.host}index.php?route=api/logout`)
 
   }
+  deleteCard(cardId):Observable<any>{
+    return this.http.post(`${environment.host}index.php?route=api/cart&delete`,{
+      sizetodel:cardId
+    })
+  }
   orderSave():Observable<any>{
-    return this.http.get(`https://b2b.waudog.ua/index.php?route=api/order&add`)
+    return this.http.get(`${environment.host}index.php?route=api/order&add`)
 
   }
 

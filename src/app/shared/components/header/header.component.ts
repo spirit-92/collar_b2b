@@ -3,6 +3,8 @@ import {AdminService} from "../../../admin/shared/services/admin.service";
 import {ProductService} from "../../../services/product.service";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {basketShow} from "../../interfaces";
+import {NgxSpinnerService} from "ngx-spinner";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-header',
@@ -44,7 +46,8 @@ export class HeaderComponent implements OnInit {
     private  auth: AdminService,
     private productService:ProductService,
     private _eref: ElementRef,
-
+    private spinner: NgxSpinnerService,
+    public toast:ToastrService
   ) {
     this.productService.getToken().subscribe(res =>{
       console.log(this.authBool,'тут')
@@ -55,28 +58,38 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner.show()
     this.productService.showOrderBasket().subscribe((res:basketShow) =>{
       this.showBasketProduct = res
       console.log(this.showBasketProduct,'def basket')
-
+      this.spinner.hide()
+    },error => {
+      this.spinner.hide()
     })
 
 
       this.productService.showBasket$.subscribe(res =>{
         console.log('TRIGGER',console.log(res))
+        this.spinner.show()
         this.productService.showOrderBasket().subscribe((res:basketShow) =>{
           this.showBasketProduct = res
           console.log('UPDATE BASKET')
+          this.spinner.hide()
         },error => {
           this.showBasketProduct = null
+          this.spinner.hide()
         })
     })
   }
   logout() {
+    this.spinner.show()
     this.productService.logout().subscribe(res =>{
       console.log(res,'11122121')
       localStorage.clear()
       document.location.reload()
+      this.spinner.hide()
+    },error => {
+      this.spinner.hide()
     })
 
   }
@@ -91,5 +104,34 @@ export class HeaderComponent implements OnInit {
     console.log(this._eref.nativeElement.querySelector(`#menu-toggle`).checked = false)
 
 
+  }
+
+  deleteBasket(cart_id: string) {
+
+
+    console.log(this.showBasketProduct)
+    this.spinner.show()
+    this.productService.deleteCard(cart_id).subscribe(res =>{
+      this.showBasketProduct.items.forEach(item =>{
+        // @ts-ignore
+
+        // // @ts-ignore
+        item.sizes = item.sizes.filter(item =>{
+          return   item.cart_id !== cart_id
+        })
+
+      })
+      // @ts-ignore
+      this.showBasketProduct.items = this.showBasketProduct.items.filter(item=>{
+        // @ts-ignore
+        return  item.sizes.length !== 0
+      })
+      this.toast.success('delete product')
+      this.spinner.hide()
+
+    },error => {
+      this.toast.error('delete product')
+      this.spinner.hide()
+    })
   }
 }

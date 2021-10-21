@@ -39,11 +39,16 @@ export interface basketShow {
           "id": string,
           "qt": string,
           "sum": string,
-        }
+          "color":number,
+          "name":string,
+          "cart_id":string
+        },
+
       ]
     },
   ]
 }
+
 
 export interface ProductB2b {
   "item": {

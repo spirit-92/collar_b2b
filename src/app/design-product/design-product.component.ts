@@ -51,11 +51,9 @@ export class DesignProductComponent implements OnInit {
           // this.router.navigate(['/catalog/',product.name ,this.id__categoriesDes]);
 
         })
-
-
-
-
       }
+      this.loader.hide()
+    },error => {
       this.loader.hide()
     })
   }

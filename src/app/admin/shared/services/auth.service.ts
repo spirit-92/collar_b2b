@@ -14,9 +14,7 @@ export class AuthService {
 
   get token(): string {
     const expDate = localStorage.getItem('b2b_token-exp')
-    console.log(expDate,+expDate ,Math.round(new Date().getTime() / 1000))
     if (+expDate < Math.round(new Date().getTime() / 1000 ) && +expDate !== 0){
-      console.log('logout')
       this.logout()
       return  null
     }
@@ -40,6 +38,7 @@ export class AuthService {
   }
   logout() {
     this.setToken(null)
+    this.http.get(`${environment.host}index.php?route=api/logout`)
     localStorage.clear()
   }
 
@@ -47,16 +46,18 @@ export class AuthService {
     return !! this.token
   }
 
-  private setToken(res) {
-      console.log(res,'setToken')
-      if (res.token){
+   setToken(res) {
+      console.log(res,'setToken',  !!res)
+
+      if (!!res){
         const expDate = res.expiry
 
         localStorage.setItem('b2b_token',res.token)
         localStorage.setItem('b2b_token-exp',expDate.toString())
       }else {
-        console.log('remove')
+        console.log('remove ,logoute')
         localStorage.removeItem('b2b_token')
+
       }
 
 

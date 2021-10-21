@@ -26,21 +26,28 @@
             <div class="description-card">
               <h3>{{product.name}}</h3>
               <div class="hr-card"></div>
+              <div class="card__img imgPrevMobile">
+                <img [src]= product.image  alt="">
+              </div>
               <div *ngFor="let sizes of product.sizes" class="card__body">
+                <div *ngIf="sizes.color" class="size colorCard">
+                  <p class="size-title fw700">Color: </p>
+                  <p class="size-price"> {{sizes.color === 1?'black':'white'}}</p>
+                </div>
                 <div class="size">
-                  <p class="size-title">Size: </p>
-                  <p class="size-price"> {{sizes.id}}</p>
+                  <p class="size-title fw700">Size: </p>
+                  <p class="size-price"> {{sizes.name}}</p>
                 </div>
                 <div class="quantity">
-                  <p class="quantity-title">Quantity: </p>
+                  <p class="quantity-title fw700">Quantity: </p>
                   <p class="quantity-price"> {{sizes.qt}}</p>
                 </div>
                 <div class="sum">
-                  <p class="sum-title">Sum: </p>
-                  <p class="sum-price"> {{sizes.sum}}</p>
+                  <p class="sum-title fw700">Sum: </p>
+                  <p class="sum-price"> {{sizes.sum}} <span>{{showBasketProduct.currency ==="EUR"?'€':'$'}}</span></p>
                 </div>
                 <div class="delete__card">
-                  <button>delete</button>
+                  <button (click)="deleteBasket(sizes.cart_id)">delete</button>
                 </div>
               </div>
             </div>
@@ -71,5 +78,6 @@
     <li *ngIf="authBool"  (click)="logout()"><a    href="javascript:void(0);">Logout</a></li>
   </ul>
   </div>
+
 </header>
 
