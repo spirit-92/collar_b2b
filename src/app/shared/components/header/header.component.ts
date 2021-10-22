@@ -5,6 +5,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 import {basketShow} from "../../interfaces";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -47,7 +48,8 @@ export class HeaderComponent implements OnInit {
     private productService:ProductService,
     private _eref: ElementRef,
     private spinner: NgxSpinnerService,
-    public toast:ToastrService
+    public toast:ToastrService,
+    public route: Router,
   ) {
     this.productService.getToken().subscribe(res =>{
       console.log(this.authBool,'тут')
@@ -87,6 +89,7 @@ export class HeaderComponent implements OnInit {
       console.log(res,'11122121')
       localStorage.clear()
       document.location.reload()
+      this.route.navigate(['/'])
       this.spinner.hide()
     },error => {
       this.spinner.hide()

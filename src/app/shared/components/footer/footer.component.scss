@@ -1,0 +1,82 @@
+.card__description-third{
+  font-size: 18px;
+  line-height: 24px;
+}
+.wave-top{
+  display: block;
+  background: rgb(213,53,105);
+  background: linear-gradient(90deg, rgba(213,53,105,1) 0%, rgba(216,109,95,1) 35%, rgba(218,173,81,1) 100%);
+}
+footer{
+  background: rgb(213,53,105);
+  background: linear-gradient(90deg, rgba(213,53,105,1) 0%, rgba(216,109,95,1) 35%, rgba(218,173,81,1) 100%);
+}
+.footer__h1{
+  color: white;
+  font-size: 3em;
+  margin: 0;
+  font-weight: 500;
+}
+.footer__description{
+  padding: 50px 0;
+}
+.footer__container{
+  display:flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+.footer_btn{
+  padding: 20px 30px;
+  margin: 0;
+  box-shadow: 0px 8px 15px rgb(0 0 0 / 20%);
+}
+.footer__right{
+  display: flex;
+  align-items: center;
+  h3{
+    margin: 0;
+    font-size: 2em;
+    color: white;
+    line-height: 35px;
+    width: 192px;
+  }
+}
+.description__header-btn{
+  border: none;
+  transition: .8s;
+  color: #212121;
+  padding: 10px 40px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  &:hover{
+    transform: scale(1.1);
+    text-decoration: underline;
+  }
+}
+@media screen and (max-width: 496px) {
+.footer__h1{
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+  .footer__right{
+    flex-direction: column;
+    align-items: initial;
+    text-align: center;
+    h3{
+      font-size: 1.5em;
+    }
+    button{
+      margin-top: 20px;
+    }
+
+  }
+  .footer__container{
+    flex-direction: column;
+  }
+
+}

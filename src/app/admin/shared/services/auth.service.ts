@@ -36,6 +36,9 @@ export class AuthService {
 
     )
   }
+  firstRegistration(user):Observable<any>{
+    return this.http.post(`${environment.host}index.php?route=api/register`, user)
+  }
   logout() {
     this.setToken(null)
     this.http.get(`${environment.host}index.php?route=api/logout`)

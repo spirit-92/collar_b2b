@@ -30,16 +30,21 @@ export class RegistrationComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
-  passwordFormControl = new FormControl('', [
+  firstNameFormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(6),
+    Validators.minLength(4),
+  ]);
+  lastNameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(4),
   ]);
   countryFormControl = new FormControl('', [
     Validators.required,
   ]);
-  phoneFormControl = new FormControl('', [
+  companyFormControl = new FormControl('', [
     Validators.required,
   ]);
+
 
 
   matcher = new MyErrorStateMatcher();
@@ -76,28 +81,30 @@ export class RegistrationComponent implements OnInit {
   }
   onSubmit() {
     this.spinner.show()
-    const user: User = {
+    const user: any = {
       country_id:+this.countryFormControl.value,
       email: this.emailFormControl.value,
-      phone: this.phoneFormControl.value,
-      password: this.passwordFormControl.value,
-      company:'test'
+      firstName: this.firstNameFormControl.value,
+      lastName:this.lastNameFormControl.value,
+      company: this.companyFormControl.value
 
     }
     console.log(user)
-    if (this.emailFormControl.status === 'VALID' && this.passwordFormControl.status === 'VALID'
-      && this.phoneFormControl.status === 'VALID'&& this.countryFormControl.status === 'VALID'
-    ) {
-      this.auth.registration(user)
-      this.spinner.hide()
+    if (this.emailFormControl.status === 'VALID' && this.firstNameFormControl.status === 'VALID'
+      && this.lastNameFormControl.status === 'VALID'&& this.countryFormControl.status === 'VALID'
+      && this.companyFormControl.status === 'VALID'
 
-      this.auth.registration(user).subscribe((res) => {
+    ) {
+      this.auth.firstRegistration(user).subscribe((res) => {
         console.log(res)
         this.toast.success(res.success)
         this.spinner.hide()
         // this.route.navigate(['/admin', 'dashboard'])
       }, error => {
-        // console.log(error)
+        error.error.forEach(mes =>{
+         this.toast.error(mes)
+       })
+        this.spinner.hide()
         // if (error.error.body) {
         //   this.errorPassword.push(error.error.body);
         // } else if (typeof error.error.errors.email[0] !== undefined) {

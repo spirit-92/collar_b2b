@@ -1,10 +1,17 @@
-<div class="design__product">
+<div  class="design__product">
+
   <div style="margin-top: 100px;" class="container">
     <h1 class="design__h1">Design</h1>
-    <div class="row">
-      <a   href="javascript:void(0);" *ngFor="let design of designs"
+    <div class="search__container">
+    <mat-form-field class="example-full-width register-input">
+      <mat-label>Search design</mat-label>
+      <input (input)="search($event)"  matInput placeholder="Search design">
+    </mat-form-field>
+    </div>
+    <div *ngIf="designs" class="row">
+      <a   href="javascript:void(0);" *ngFor="let design of designs | searchProduct:searchDesign"
            [routerLink]="['/catalog','design',id__categoriesDes,'product',design.id]"
-           class="col-md-12 card__a">
+           class="col-md-4 card__a">
         <div class="card-categories">
           <h2 class="categories__h3">{{design.name}}</h2>
           <img  style="max-width: 100%;height: auto" src="{{design.image}}" alt="">

@@ -32,7 +32,7 @@
             </h1>
           </div>
 <!-- цена и sku-->
-          <div class="product__description-price">
+          <div *ngIf="auth" class="product__description-price">
             <div *ngIf="productOption"  class="price"><h3> Sum : {{sum}}
               <span *ngIf="productOption.item.currency_code==='EUR'">€ </span>
               <span *ngIf="productOption.item.currency_code !=='EUR'">$ </span>
@@ -56,7 +56,7 @@
 <!-- размер-->
           <div class="size-container">
 <!--            заголовок таблицы-->
-            <table *ngIf="productOption" class="table">
+            <table *ngIf="productOption && auth" class="table">
               <thead>
               <tr>
                 <th scope="col">SIZE</th>

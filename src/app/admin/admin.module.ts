@@ -92,7 +92,7 @@ const INTERCEPTOR_PROVIDER:Provider = {
 
 
     ],
-  exports: [RouterModule],
+  exports: [RouterModule, SearchPipe],
   providers: [AuthService, AuthGuard,AdminService,INTERCEPTOR_PROVIDER]
 
 })

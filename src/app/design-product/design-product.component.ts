@@ -15,8 +15,9 @@ import {Design} from "../shared/interfaces";
   styleUrls: ['./design-product.component.scss']
 })
 export class DesignProductComponent implements OnInit {
-  designs: Design
+  designs: any
   id__categoriesDes: number;
+  searchDesign:string = '';
   constructor(
     private productService: ProductService,
     private loader: NgxSpinnerService,
@@ -36,7 +37,7 @@ export class DesignProductComponent implements OnInit {
 
       })
     ).subscribe(product => {
-      // console.log(product)
+      console.log(product)
 
       if (product.hasOwnProperty('design')){
           // @ts-ignore
@@ -58,4 +59,9 @@ export class DesignProductComponent implements OnInit {
     })
   }
 
+  search(event: Event) {
+    let val = (event.target as HTMLInputElement).value
+      this.searchDesign = (event.target as HTMLInputElement).value
+
+  }
 }

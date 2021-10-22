@@ -2,7 +2,7 @@
 .categories__h3{
   text-align: center;
   font-size: 30px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 .card-categories{
   padding: 28px 15px;
@@ -17,13 +17,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row-reverse;
+  flex-direction: column;
   &:hover{
     transform: scale(1.1);
   }
 }
 .card__a{
   color: #212121;
+  max-height:190px;
+  min-height: 190px;
 }
 .design__h1{
   font-size: 45px;
@@ -41,4 +43,8 @@
     flex-direction: column;
   }
 
+}
+.search__container{
+  margin-bottom: 30px;
+  text-align: center;
 }
