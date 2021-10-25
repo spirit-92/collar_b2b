@@ -5,9 +5,11 @@
       <ul class="header__ul">
         <li  routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/']"><a href="javascript:void(0);">Main</a></li>
         <li  [routerLinkActiveOptions]="{exact:true}"  [routerLink]="['/catalog']"  routerLinkActive="active-link" ><a  href="javascript:void(0);">Catalog</a></li>
-        <li  *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/login"><a href="javascript:void(0);">Sign in</a></li>
-        <li  *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/registration"><a href="javascript:void(0);">Sign up</a></li>
+        <li  *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="account/user/login"><a href="javascript:void(0);">Sign in</a></li>
+        <li  *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/user/registration"><a href="javascript:void(0);">Sign up</a></li>
+        <li  *ngIf="authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/user/order"><a href="javascript:void(0);">Account</a></li>
         <li  *ngIf="authBool" routerLinkActive="active-link"  (click)="logout()"><a    href="javascript:void(0);">Logout</a></li>
+
       </ul>
       <div *ngIf="authBool" class="container-basket">
       <div (click)="showBasket = !showBasket" class="basket">
@@ -75,8 +77,9 @@
   <ul id="menu">
     <li (click)="hideMenu()"  [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" ><a href="javascript:void(0);">Main</a></li>
     <li (click)="hideMenu()" [routerLink]="['/catalog']"  routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"><a  href="javascript:void(0);">Catalog</a></li>
-    <li (click)="hideMenu()"  *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/login"><a href="javascript:void(0);">Sign in</a></li>
-    <li (click)="hideMenu()" *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/registration"><a href="javascript:void(0);">Sign up</a></li>
+    <li (click)="hideMenu()"  *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/user/login"><a href="javascript:void(0);">Sign in</a></li>
+    <li (click)="hideMenu()" *ngIf="!authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/user/registration"><a href="javascript:void(0);">Sign up</a></li>
+    <li (click)="hideMenu()"  *ngIf="authBool" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/user/order"><a href="javascript:void(0);">Account</a></li>
     <li *ngIf="authBool"  (click)="logout()"><a    href="javascript:void(0);">Logout</a></li>
   </ul>
   </div>

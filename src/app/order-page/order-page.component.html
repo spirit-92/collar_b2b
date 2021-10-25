@@ -1,4 +1,4 @@
-<div class="container__product">
+<div class="container__product h100vh">
  <div *ngIf="showBasketProduct" class="container">
    <ul *ngIf="showBasketProduct.items.length" class="basket__ul">
      <li *ngFor="let product of showBasketProduct.items">
@@ -12,7 +12,7 @@
          <div *ngFor="let sizes of product.sizes" class="card__body">
            <div class="size">
              <p class="size-title">Size: </p>
-             <p class="size-price"> {{sizes.id}}</p>
+             <p class="size-price"> {{sizes.name}}</p>
            </div>
            <div class="quantity">
              <p class="quantity-title">Quantity: </p>

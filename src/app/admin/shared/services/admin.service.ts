@@ -13,6 +13,15 @@ export class AdminService {
   getCountry(): Observable<any> {
     return this.http.get<any>(`${environment.host}index.php?route=api/register&country`)
   }
+  getOrder(): Observable<any> {
+    return this.http.get<any>(`${environment.host}index.php?route=api/account/order&get`)
+  }
+  deleteOrder(id): Observable<any> {
+    return this.http.post<any>(`${environment.host}index.php?route=api/account/order&delete`,{
+      ordertodel:id
+    })
+  }
+
   // getShops(): Observable<any> {
   //   return this.http.get<any>(`${environment.host}/nyVladikGetShops`)
   // }

@@ -37,4 +37,23 @@
 <!--    </mat-card-actions>-->
 <!--  </mat-card>-->
 <!--</div>-->
-<h1 style="margin-top: 200px; text-align: center">statistics in progress</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngIf="auth" class="col-md-2">
+      <div class="sidebar bgBar">
+        <ul class="sidebar__ul">
+          <li>
+            <a class="active"
+              routerLinkActive="active" [routerLink]="['/account','user','order']"
+              mat-button href="javascript:void(0);">Order</a></li>
+          <li>    <a  routerLinkActive="active"  [routerLink]="['/account','user','settings']"   mat-button href="javascript:void(0);">Setting</a></li>
+          <li>    <a  mat-button href="javascript:void(0);" target="_blank">Delete account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div [ngClass]="auth ? 'col-md-10' : 'col-md-12'">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

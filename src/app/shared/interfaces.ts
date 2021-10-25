@@ -49,6 +49,19 @@ export interface basketShow {
   ]
 }
 
+export interface getOrders {
+  "currency": string,
+  "user": string,
+  "orders":  orders[]
+}
+export interface orders {
+  cart_id: string
+  client_id: string
+  id: string
+  order_date_time: string
+  order_num:string
+
+}
 
 export interface ProductB2b {
   "item": {

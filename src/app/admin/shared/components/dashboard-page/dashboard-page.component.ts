@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {AdminService} from "../shared/services/admin.service";
-import {Product} from "../../shared/interfaces";
+import {Component, OnInit,} from '@angular/core';
+import {AdminService} from "../../services/admin.service";
+
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-dashboard-page',
@@ -10,16 +11,22 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit {
-  products: Product[];
-  searchSku:string = '';
+  auth:boolean
+
   constructor(
-    private adminService: AdminService,
+    private authService: AuthService,
     private toast: ToastrService,
     private loader: NgxSpinnerService
   ) {
   }
 
   ngOnInit(): void {
+  this.auth =   this.authService.isAuthenticated()
+
+  this.authService.isAuth$.subscribe(res =>{
+
+    this.auth = res
+  })
     // this.loader.show()
     // this.adminService.getProducts().subscribe(res => {
     //   this.products = res.product;
@@ -30,9 +37,7 @@ export class DashboardPageComponent implements OnInit {
     // }, () => {
     //   this.loader.hide()
     // })
-    this.adminService.getCountry().subscribe(res =>{
-      console.log(res)
-    })
+
   }
 
   deleteProduct(id) {
@@ -47,4 +52,5 @@ export class DashboardPageComponent implements OnInit {
     //   console.log(error)
     // })
   }
+
 }

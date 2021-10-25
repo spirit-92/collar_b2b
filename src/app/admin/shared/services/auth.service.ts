@@ -1,17 +1,20 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {User} from "../../../shared/interfaces";
-import {Observable, throwError} from "rxjs";
+import {Observable, Subject, throwError} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {catchError, tap} from "rxjs/operators";
 
 @Injectable()
 export class AuthService {
+  public isAuth$ = new Subject<boolean>();
   constructor(
     private http: HttpClient
   ) {
   }
-
+  isAuth(){
+    this.isAuth$.next(this.isAuthenticated())
+  }
   get token(): string {
     const expDate = localStorage.getItem('b2b_token-exp')
     if (+expDate < Math.round(new Date().getTime() / 1000 ) && +expDate !== 0){

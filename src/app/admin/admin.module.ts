@@ -3,8 +3,8 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AdminLayoutComponent} from './shared/components/admin-layout/admin-layout.component';
 import {LoginPageComponent} from './login-page/login-page.component';
-import {DashboardPageComponent} from './dashboard-page/dashboard-page.component';
-import {CreateProductComponent} from './create-product/create-product.component';
+import {DashboardPageComponent} from './shared/components/dashboard-page/dashboard-page.component';
+import {OrderComponent} from './orders/order.component';
 import {EditProductPageComponent} from './edit-product-page/edit-product-page.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from "@angular/material/list";
@@ -33,17 +33,17 @@ import { RegistrationComponent } from './registration/registration.component';
 import {HttpClientModule} from "@angular/common/http";
 
 
-const INTERCEPTOR_PROVIDER:Provider = {
-  provide:HTTP_INTERCEPTORS,
-  multi:true,
-  useClass:AuthInterceptor
-}
+// const INTERCEPTOR_PROVIDER:Provider = {
+//   provide:HTTP_INTERCEPTORS,
+//   multi:true,
+//   useClass:AuthInterceptor
+// }
 @NgModule({
   declarations: [
     AdminLayoutComponent,
     LoginPageComponent,
     DashboardPageComponent,
-    CreateProductComponent,
+    OrderComponent,
     EditProductPageComponent,
     SearchPipe,
     AddImgProductPageComponent,
@@ -67,22 +67,27 @@ const INTERCEPTOR_PROVIDER:Provider = {
         RouterModule.forChild([
             {
                 path: '', component: AdminLayoutComponent, children: [
-                    {path: '', redirectTo: '/account/login', pathMatch: 'full'},
-                    {path: 'login', component: LoginPageComponent},
-                    {path: 'registration', component: RegistrationComponent},
-                    {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
-                    {path: 'create', component: CreateProductComponent, canActivate: [AuthGuard]},
-                    {path: 'edit/shop', component: OptipnsAdminComponent, canActivate: [AuthGuard]},
-                    {path: 'edit/categories', component: EditCategoriesComponent, canActivate: [AuthGuard]},
-                    {path: 'edit/sizes', component: EditSizesComponent, canActivate: [AuthGuard]},
-                    {path: 'product/:id/edit', component: EditProductPageComponent, canActivate: [AuthGuard]},
+                {path: '', redirectTo: '/account/user/login', pathMatch: 'full'},
+                {path: 'user', component: DashboardPageComponent,
+                    children:[
+                        {path: '', redirectTo: '/account/user/login', pathMatch: 'full'},
+                        {path: 'login', component: LoginPageComponent},
+                        {path: 'registration', component: RegistrationComponent},
+                        {path: 'order', component: OrderComponent,canActivate: [AuthGuard]},
+                        {path: 'settings', component: OptipnsAdminComponent, canActivate: [AuthGuard]},
+                        {path: 'edit/categories', component: EditCategoriesComponent, canActivate: [AuthGuard]},
+                        {path: 'edit/sizes', component: EditSizesComponent, canActivate: [AuthGuard]},
+                        {path: 'product/:id/edit', component: EditProductPageComponent, canActivate: [AuthGuard]},
 
-                    {
+                      {
                         path: 'product/:id/addImgProduct',
                         component: AddImgProductPageComponent,
                         canActivate: [AuthGuard]
+                      },
+                      ]
+                      // canActivate: [AuthGuard]
                     },
-                ]
+              ]
             }
         ]),
         MatSelectModule,
@@ -93,7 +98,9 @@ const INTERCEPTOR_PROVIDER:Provider = {
 
     ],
   exports: [RouterModule, SearchPipe],
-  providers: [AuthService, AuthGuard,AdminService,INTERCEPTOR_PROVIDER]
+  providers: [AuthService, AuthGuard,AdminService,
+    // INTERCEPTOR_PROVIDER
+  ]
 
 })
 export class AdminModule {

@@ -53,8 +53,15 @@ export class HeaderComponent implements OnInit {
   ) {
     this.productService.getToken().subscribe(res =>{
       console.log(this.authBool,'тут')
-       this.authBool = res
+      this.authBool = res
 
+    })
+    this.productService.isAuth$.subscribe(res =>{
+      this.productService.getToken().subscribe(res =>{
+        console.log(this.authBool,'тут')
+        this.authBool = res
+
+      })
     })
 
   }

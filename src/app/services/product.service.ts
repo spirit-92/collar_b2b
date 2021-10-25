@@ -11,14 +11,16 @@ import {catchError, map, tap} from "rxjs/operators";
 })
 export class ProductService {
   public underCategory$ = new Subject<any[]>();
-  public showBasket$ = new Subject<any[]>();
-  public isAuth$:any =null
+  public showBasket$ = new Subject<boolean>();
+  public isAuth$:any = new Subject<boolean>();
   constructor(
     private http: HttpClient
   ) { }
 
+  subjectAuth(){
+    return  this.isAuth$.next();
+  }
   getProducts(): Observable<any> {
-
     return this.http.get<any>(`${environment.host}/nyVladikGetProducts`)
   }
   getCategories():Observable<any>{
@@ -92,6 +94,7 @@ export class ProductService {
 
      }
   }
+
   logout():Observable<any> {
     return this.http.get(`${environment.host}index.php?route=api/logout`)
 

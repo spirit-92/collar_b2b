@@ -1,25 +1,31 @@
-//.navbar{
-//  background: #000000;
-//  border-bottom:  2px solid #ffff;;
-//}
-//.admin_nav-list{
-//  display: flex;
-//  padding: 0;
-//}
-//.logo_nyVladic{
-//  margin: 0;
-//}
-//.admin__style-container{
-//  padding: 15px 0;
-//}
-//.admin_logout{
-//  text-decoration: none;
-//  color: #fff;
-//}
-//.active{
-//  outline: -webkit-focus-ring-color auto 1px;
-//}
+.navbar{
+  background: white;
+  box-shadow: 0 4px 6px -6px #222;
+}
+.admin_nav-list{
+  display: flex;
+  padding: 0;
+}
+.logo_nyVladic{
+  margin: 0;
+}
+.admin__style-container{
+  padding: 15px 0;
+}
+.admin_logout{
+  text-decoration: none;
+  color: #fff;
+}
+.active{
+  outline: -webkit-focus-ring-color auto 1px;
+}
 .bg_admin_route{
   background: white;
   min-height: 100vh;
+}
+.navbar{
+  margin-bottom: 0;
+}
+.admin_logout{
+  color: rgba(0,0,0,.87);
 }

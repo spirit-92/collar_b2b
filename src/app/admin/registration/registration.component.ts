@@ -99,7 +99,8 @@ export class RegistrationComponent implements OnInit {
         console.log(res)
         this.toast.success(res.success)
         this.spinner.hide()
-        // this.route.navigate(['/admin', 'dashboard'])
+        this.route.navigate(['/account','user', 'order'])
+
       }, error => {
         error.error.forEach(mes =>{
          this.toast.error(mes)
