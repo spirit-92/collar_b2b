@@ -1,10 +1,14 @@
-<table class="table table-striped">
+<div class="table-responsive">
+<table style="overflow-x: auto"  class="table table-striped">
   <thead>
   <tr>
     <th scope="col">#</th>
     <th scope="col">Order number</th>
+    <th scope="col">Total</th>
     <th scope="col">Date</th>
     <th scope="col">Show more</th>
+    <th scope="col">Invoice</th>
+
 <!--    <th scope="col">Delete</th>-->
   </tr>
   </thead>
@@ -12,10 +16,18 @@
   <tr *ngFor="let order of orders.orders;  let i = index" >
     <th scope="row">{{i+1}}</th>
     <td>{{order.order_num}}</td>
+    <td>
+      <span>{{orders.currency === "EUR"?'€':'$'}}</span>
+      {{order.total}}</td>
     <td>{{order.order_date_time}}</td>
     <td>
-      <button (click)="showMoreToggle = !showMoreToggle" mat-stroked-button color="accent">Details</button>
+      <button  (click)="showMore(order.id)" mat-stroked-button color="accent">Details</button>
     </td>
+    <td>
+<!--      <button  (click)="download(order.id)" mat-stroked-button color="accent">Download</button>-->
+      <a target="_blank" href="{{'https://b2b.waudog.ua/files/invoice_'+order.order_num+'.pdf'}}">Download</a>
+    </td>
+
 <!--    <td>-->
 <!--      <button (click)="deleteOrder(order.id)" mat-stroked-button color="warn">Delete</button>-->
 <!--    </td>-->
@@ -23,61 +35,39 @@
 
   </tbody>
 </table>
+</div>
 <div [@inOutAnimation] (click)="showMoreToggle =  !showMoreToggle" *ngIf="showMoreToggle" class="placeholder"></div>
-<div [@inOutAnimation] style="position: absolute;top: 0; z-index: 999" *ngIf="showMoreToggle">
+<div class="container__details" [@inOutAnimation] *ngIf="showMoreToggle">
   <div class="container popup">
     <a (click)="showMoreToggle =  !showMoreToggle" href="javascript:void(0);" class="close"></a>
     <h3 class="details">Orders Details</h3>
     <div class="container__product">
-      <div  class="container">
-        <ul  class="basket__ul">
-          <li>
+      <div *ngIf="showBasketProduct"  class="container">
+        <ul *ngIf="showBasketProduct.items.length" class="basket__ul">
+          <li *ngFor="let product of showBasketProduct.items">
             <div class="card__img">
-              <img src="assets/logo/logo.svg"  alt="">
+              <img [src]= product.image   alt="">
             </div>
             <div class="hr"></div>
             <div class="description-card">
-              <h3>Test</h3>
+              <h3>{{product.name}}</h3>
               <div class="hr-card"></div>
-              <div  class="card__body">
+              <div *ngFor="let sizes of product.sizes" class="card__body">
+                <div *ngIf="sizes.color" class="size colorCard">
+                  <p class="size-title fw700">Color: </p>
+                  <p class="size-price"> {{sizes.color === 1?'black':'white'}}</p>
+                </div>
                 <div class="size">
                   <p class="size-title">Size: </p>
-                  <p class="size-price"> 12</p>
+                  <p class="size-price"> {{sizes.name}}</p>
                 </div>
                 <div class="quantity">
                   <p class="quantity-title">Quantity: </p>
-                  <p class="quantity-price"> 13</p>
+                  <p class="quantity-price"> {{sizes.qt}}</p>
                 </div>
                 <div class="sum">
-                  <p class="sum-title">Sum: </p>
-                  <p class="sum-price"> 144</p>
-                </div>
-                <div class="delete__card">
-
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="card__img">
-              <img src="assets/logo/logo.svg"  alt="">
-            </div>
-            <div class="hr"></div>
-            <div class="description-card">
-              <h3>Test</h3>
-              <div class="hr-card"></div>
-              <div  class="card__body">
-                <div class="size">
-                  <p class="size-title">Size: </p>
-                  <p class="size-price"> 12</p>
-                </div>
-                <div class="quantity">
-                  <p class="quantity-title">Quantity: </p>
-                  <p class="quantity-price"> 13</p>
-                </div>
-                <div class="sum">
-                  <p class="sum-title">Sum: </p>
-                  <p class="sum-price"> 144</p>
+                  <p class="sum-title">Amount: <span>{{showBasketProduct.currency ==="EUR"?'€':'$'}}</span> </p>
+                  <p class="sum-price"> {{sizes.sum}}</p>
                 </div>
                 <div class="delete__card">
 
@@ -87,7 +77,7 @@
           </li>
           <li  class="total__price">
             <div class="d-flex flex-alight-center">
-              <h3>Sum: 23</h3> <span>EUR</span>
+              <h3>Total: <span>{{showBasketProduct.currency ==="EUR"?'€':'$'}} </span> {{showBasketProduct.total}}</h3>
             </div>
 
           </li>

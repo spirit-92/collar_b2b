@@ -2,6 +2,7 @@
   color: white;
   height: 100vh;
 }
+
 .container-product{
   width: 800px;
   margin: 0 auto;
@@ -13,6 +14,13 @@
 .product-form{
   display: flex;
   flex-direction: column;
+}
+.container__details{
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .placeholder{
   width: 100%;
@@ -254,3 +262,9 @@
 .close:after {
   transform: rotate(-45deg);
 }
+//@media only screen and (max-width : 480px) {
+//.container__details{
+//  left: 0;
+//  transform: translateX(0);
+//}
+//}

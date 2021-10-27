@@ -13,6 +13,24 @@
     </mat-list>
     </div>
   </div>
+
+  <div class="mobile__menu">
+    <input type="checkbox" id="menu-toggle"/>
+    <label id="trigger" for="menu-toggle"></label>
+    <label id="burger" for="menu-toggle"></label>
+    <ul id="menu">
+      <li (click)="hideMenu()"  [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" ><a href="javascript:void(0);">Main</a></li>
+      <li (click)="hideMenu()" [routerLink]="['/catalog']"  routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"><a  href="javascript:void(0);">Catalog</a></li>
+      <li  *ngIf="!auth.isAuthenticated()"  (click)="hideMenu()" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/user/login"><a href="javascript:void(0);">Sign in</a></li>
+      <li  *ngIf="!auth.isAuthenticated()"  (click)="hideMenu()" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/account/user/registration"><a href="javascript:void(0);">Sign up</a></li>
+
+      <li  (click)="hideMenu()"><a  routerLinkActive="active" [routerLink]="['/account','user','order']" [routerLinkActiveOptions]="{exact:true}" mat-button href="javascript:void(0);">Order</a></li>
+      <li  (click)="hideMenu()"> <a  routerLinkActive="active"  [routerLink]="['/account','user','settings']" [routerLinkActiveOptions]="{exact:true}"  mat-button href="javascript:void(0);">Setting</a></li>
+      <li  (click)="hideMenu()">    <a  mat-button href="javascript:void(0);" target="_blank">Delete account</a></li>
+      <li *ngIf="auth.isAuthenticated()"  (click)="logout($event)"><a    href="javascript:void(0);">Logout</a></li>
+    </ul>
+  </div>
+
 </nav>
 
 <div class="bg_admin_route">

@@ -10,6 +10,10 @@
          <h3>{{product.name}}</h3>
          <div class="hr-card"></div>
          <div *ngFor="let sizes of product.sizes" class="card__body">
+           <div *ngIf="sizes.color" class="size colorCard">
+             <p class="size-title fw700">Color: </p>
+             <p class="size-price"> {{sizes.color === 1?'black':'white'}}</p>
+           </div>
            <div class="size">
              <p class="size-title">Size: </p>
              <p class="size-price"> {{sizes.name}}</p>

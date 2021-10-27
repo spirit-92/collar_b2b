@@ -70,7 +70,7 @@ export class ProductService {
 
         return  true
       }),catchError(err => {
-
+          this.logout()
         return of(false);
       })
     )
@@ -96,7 +96,9 @@ export class ProductService {
   }
 
   logout():Observable<any> {
+    localStorage.clear()
     return this.http.get(`${environment.host}index.php?route=api/logout`)
+
 
   }
   deleteCard(cardId):Observable<any>{

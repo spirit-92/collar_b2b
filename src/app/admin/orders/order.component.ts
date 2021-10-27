@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AdminService} from "../shared/services/admin.service";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
-import {getOrders,orders} from "../../shared/interfaces";
+import {basketShow, getOrders, orders} from "../../shared/interfaces";
 import {Observable} from "rxjs";
 import {animate, style, transition, trigger} from "@angular/animations";
 
@@ -40,9 +40,9 @@ import {animate, style, transition, trigger} from "@angular/animations";
 export class OrderComponent implements OnInit {
   showMoreToggle:boolean = false
   orders: getOrders
-
+  showBasketProduct:basketShow
   orders2 = {
-    "currency": 12,
+    "currency": 'EUR',
     "user": 12,
     "orders":  [
       {
@@ -50,21 +50,27 @@ export class OrderComponent implements OnInit {
         client_id:1,
         id: 1,
         order_date_time: 1,
-        order_num:1
+        order_num:1,
+        total:12,
+        currency:'EUR'
       },
       {
         cart_id: 2,
         client_id: 2,
         id: 2,
         order_date_time: 2,
-        order_num:2
+        order_num:2,
+        total:12,
+        currency:'EUR'
       },
       {
         cart_id: 2,
         client_id: 2,
         id: 2,
         order_date_time: 2,
-        order_num:2
+        order_num:2,
+        total:12,
+        currency:'EUR'
       }
     ]
   }
@@ -73,16 +79,11 @@ export class OrderComponent implements OnInit {
     private adminService: AdminService,
     private toast: ToastrService,
     private spinner: NgxSpinnerService,
-  ) {
-
-
-
-
-  }
-
+  ) {}
 
   ngOnInit(): void {
    this.adminService.getOrder().subscribe(res =>{
+     console.log(res)
      this.orders = res
    })
   }
@@ -102,5 +103,20 @@ export class OrderComponent implements OnInit {
     })
 
 
+  }
+
+  showMore(id: any) {
+
+    this.adminService.basketOrder(id).subscribe(res =>{
+      console.log(res,'!_! SHOW MORE')
+      this.showBasketProduct = res
+      this.showMoreToggle = !this.showMoreToggle
+    })
+  }
+
+  download(id: string) {
+    this.adminService.orderDownload(id).subscribe(res =>{
+      console.log(res,'!P!P!P!P!P')
+    })
   }
 }

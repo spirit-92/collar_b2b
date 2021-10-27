@@ -21,6 +21,17 @@ export class AdminService {
       ordertodel:id
     })
   }
+  basketOrder(id): Observable<any> {
+    return this.http.post<any>(`${environment.host}index.php?route=api/account/order&details`,{
+      order_id:id
+    })
+  }
+  orderDownload(id):Observable<any>{
+    return this.http.post<any>(`${environment.host}index.php?route=api/account/order&download`,{
+      order_id:id
+    })
+  }
+
 
   // getShops(): Observable<any> {
   //   return this.http.get<any>(`${environment.host}/nyVladikGetShops`)

@@ -60,7 +60,8 @@ export interface orders {
   id: string
   order_date_time: string
   order_num:string
-
+  total:string
+  currency:string
 }
 
 export interface ProductB2b {

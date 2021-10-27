@@ -43,9 +43,9 @@ export class AuthService {
     return this.http.post(`${environment.host}index.php?route=api/register`, user)
   }
   logout() {
-    this.setToken(null)
-    this.http.get(`${environment.host}index.php?route=api/logout`)
-    localStorage.clear()
+
+    return this.http.get(`${environment.host}index.php?route=api/logout`)
+
   }
 
   isAuthenticated(): boolean {
@@ -63,7 +63,7 @@ export class AuthService {
       }else {
         console.log('remove ,logoute')
         localStorage.removeItem('b2b_token')
-
+        localStorage.removeItem('b2b_token-exp')
       }
 
 

@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('b2b_token')){
-      this.route.navigate(['/account', 'dashboard'])
+      this.route.navigate(['/'])
     }else {
       this.adminService.getCountry().subscribe(res =>{
         this.countrys = res

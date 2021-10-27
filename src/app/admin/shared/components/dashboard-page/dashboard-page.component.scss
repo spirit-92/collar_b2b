@@ -79,3 +79,11 @@
   clip-path: inset(0px -15px 0px 0px);
 }
 
+@media screen and (max-width: 991px) {
+ .bgBar{
+   display: none;
+ }
+
+
+
+}

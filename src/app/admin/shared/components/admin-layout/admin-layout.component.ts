@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 
@@ -11,7 +11,8 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor(
     private router:Router,
-    public auth:AuthService
+    public auth:AuthService,
+    private _eref: ElementRef,
   ) { }
 
   ngOnInit(): void {
@@ -19,7 +20,15 @@ export class AdminLayoutComponent implements OnInit {
 
   logout(event:Event) {
     event.preventDefault();
-    this.auth.logout()
-    this.router.navigate(['/admin','login'])
+    this.auth.logout().subscribe(res =>{
+      console.log('logout',res)
+      this.auth.setToken(null)
+      this.router.navigate(['/'])
+    })
+
+  }
+
+  hideMenu() {
+    console.log(this._eref.nativeElement.querySelector(`#menu-toggle`).checked = false)
   }
 }
