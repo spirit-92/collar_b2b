@@ -52,7 +52,7 @@ export class ProductService {
     return this.http.get<basketShow>(`${environment.host}index.php?route=api/cart&get`,{})
   }
   showBasket(){
-    this.showBasket$.next()
+    // this.showBasket$.next()
   }
   isAuth():Observable<any>{
     // if (localStorage.getItem('b2b_token') !== null){
